@@ -33,6 +33,7 @@ import Instagram from "@mui/icons-material/Instagram";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import MobileCtaBar from "./components/MobileCtaBar";
+import MobileHeroNav from "./components/MobileHeroNav";
 import { eyebrowStyle, headingStyle, sectionBodyStyle, sectionDivider } from "./lib/sectionStyles";
 import EmailRounded from "@mui/icons-material/EmailRounded";
 import LocationOnRounded from "@mui/icons-material/LocationOnRounded";
@@ -131,7 +132,10 @@ export default function HomePage() {
     <Box className="page" id="top" sx={{ bgcolor: "transparent" }}>
       <SiteHeader hideOnMobile={true} />
       <Box component="main">
-        {/* Snow Removal Banner - At the very top (includes mobile nav inside) */}
+        {/* Mobile Navigation Bar - Above banner on mobile only */}
+        <MobileHeroNav />
+        
+        {/* Snow Removal Banner - At the very top */}
         <SnowRemovalBanner />
         
         <HeroSection />

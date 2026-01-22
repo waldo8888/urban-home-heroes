@@ -160,6 +160,7 @@ export default function HeroSection() {
           zIndex: 1
         }}
       />
+      {/* Desktop Navigation Bar - Only visible on desktop */}
       <Box
         sx={{
           position: "absolute",
@@ -167,7 +168,7 @@ export default function HeroSection() {
           left: { xs: 16, md: 24 },
           right: { xs: 16, md: 24 },
           zIndex: 2,
-          display: { xs: "none", md: "block" } // Hide on mobile since it's now above the banner
+          display: { xs: "none", md: "block" }
         }}
       >
           <Stack
@@ -230,7 +231,6 @@ export default function HeroSection() {
                 px: 2.5,
                 py: 0.75,
                 borderRadius: "999px",
-                display: { xs: "none", sm: "flex" },
                 "&:hover": { borderColor: "#ffffff", bgcolor: "rgba(255,255,255,0.12)" }
               }}
             >
