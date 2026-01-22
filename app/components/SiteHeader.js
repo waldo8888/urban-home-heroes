@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   AppBar,
   Box,
@@ -27,13 +27,33 @@ const drawerLinkSx = {
   fontWeight: 600
 };
 
-export default function SiteHeader() {
+export default function SiteHeader({ hideOnMobile = false }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    if (!hideOnMobile) {
+      // Always show if not hiding on mobile
+      setIsScrolled(true);
+      return;
+    }
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 100);
+    };
+
+    // Check initial scroll position
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hideOnMobile]);
 
   return (
     <>
       <AppBar
-        position="sticky"
+        position="fixed"
         elevation={0}
         sx={{
           background: "linear-gradient(180deg, rgba(14, 39, 64, 0.98) 0%, rgba(14, 39, 64, 0.95) 100%)",
@@ -42,7 +62,18 @@ export default function SiteHeader() {
           WebkitBackdropFilter: "blur(20px) saturate(180%)",
           borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
           boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-          transition: "all 0.3s ease"
+          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1100,
+          // Hide on both mobile and desktop at top, show when scrolled
+          ...(hideOnMobile && {
+            transform: isScrolled ? "translateY(0)" : "translateY(-100%)",
+            opacity: isScrolled ? 1 : 0,
+            pointerEvents: isScrolled ? "auto" : "none",
+            visibility: isScrolled ? "visible" : "hidden"
+          })
         }}
       >
         <Container maxWidth="lg">

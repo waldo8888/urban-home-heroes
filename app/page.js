@@ -30,6 +30,7 @@ import VerifiedRounded from "@mui/icons-material/VerifiedRounded";
 import PhoneRounded from "@mui/icons-material/PhoneRounded";
 import RequestQuoteRounded from "@mui/icons-material/RequestQuoteRounded";
 import Instagram from "@mui/icons-material/Instagram";
+import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import MobileCtaBar from "./components/MobileCtaBar";
 import { eyebrowStyle, headingStyle, sectionBodyStyle, sectionDivider } from "./lib/sectionStyles";
@@ -88,7 +89,7 @@ export default function HomePage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+          entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
           }
         });
@@ -122,6 +123,7 @@ export default function HomePage() {
 
   return (
     <Box className="page" id="top" sx={{ bgcolor: "transparent" }}>
+      <SiteHeader hideOnMobile={true} />
       <Box component="main">
         <HeroSection />
 
