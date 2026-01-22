@@ -13,10 +13,76 @@ export default function SnowRemovalBanner() {
         background: "linear-gradient(135deg, #0e2740 0%, #1f3a53 100%)",
         color: "#ffffff",
         py: { xs: 2, md: 2.5 },
-        pt: { xs: 10, md: 2.5 }, // Add top padding to account for fixed header
+        pt: { xs: 2, md: 2.5 }, // Reduced top padding since nav is inside now
         borderBottom: "3px solid #f07a2b"
       }}
     >
+      {/* Mobile Navigation Bar - Inside banner on mobile only */}
+      <Box
+        sx={{
+          display: { xs: "block", md: "none" },
+          position: "sticky",
+          top: 0,
+          zIndex: 1200,
+          px: 2,
+          py: 1.5,
+          background: "rgba(7, 12, 20, 0.95)",
+          backdropFilter: "blur(14px)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+          mb: 2
+        }}
+      >
+        <Container maxWidth="lg">
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{
+              px: 2,
+              py: 1,
+              borderRadius: "999px",
+              background: "rgba(7, 12, 20, 0.65)",
+              border: "1px solid rgba(255, 255, 255, 0.15)",
+              backdropFilter: "blur(14px)"
+            }}
+          >
+            <Stack direction="row" spacing={1.5} alignItems="center" component="a" href="/" sx={{ textDecoration: "none" }}>
+              <Box
+                component="img"
+                src="/urban-home-hero-logo.jpg"
+                alt="Urban Home Heroes logo"
+                sx={{
+                  width: 34,
+                  height: 34,
+                  bgcolor: "#ffffff",
+                  p: 0.4,
+                  borderRadius: 2
+                }}
+              />
+              <Typography sx={{ color: "#ffffff", fontWeight: 700, fontSize: "0.95rem" }}>
+                Urban Home Heroes
+              </Typography>
+            </Stack>
+            <Button
+              variant="outlined"
+              href="#estimate"
+              sx={{
+                borderColor: "rgba(255, 255, 255, 0.7)",
+                color: "#ffffff",
+                fontWeight: 600,
+                px: 2.5,
+                py: 0.75,
+                borderRadius: "999px",
+                fontSize: "0.85rem",
+                "&:hover": { borderColor: "#ffffff", bgcolor: "rgba(255,255,255,0.12)" }
+              }}
+            >
+              Request Same-Day Service
+            </Button>
+          </Stack>
+        </Container>
+      </Box>
+
       <Container maxWidth="lg">
         <Stack spacing={1.5} textAlign="center" alignItems="center">
           {/* Banner Alert */}
