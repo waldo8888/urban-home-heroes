@@ -44,7 +44,6 @@ import MajorServicesSection from "./components/sections/MajorServicesSection";
 import SnowRemovalBanner from "./components/sections/SnowRemovalBanner";
 import SnowRemovalFocusSection from "./components/sections/SnowRemovalFocusSection";
 import SeasonalServicesSection from "./components/sections/SeasonalServicesSection";
-import SnowCtaStrip from "./components/sections/SnowCtaStrip";
 import ReviewsSection from "./components/sections/ReviewsSection";
 import LocationFinderSection from "./components/sections/LocationFinderSection";
 import AboutSection from "./components/sections/AboutSection";
@@ -134,58 +133,42 @@ export default function HomePage() {
         <SnowRemovalBanner />
         
         <HeroSection />
-        <SnowCtaStrip />
 
         <SnowRemovalFocusSection />
-        <SnowCtaStrip />
 
         <SeasonalServicesSection />
-        <SnowCtaStrip />
 
         <StatsSection />
-        <SnowCtaStrip />
 
         <PrimaryServicesSection />
-        <SnowCtaStrip />
 
         <CommonProblemsSection />
-        <SnowCtaStrip />
 
         <MajorServicesSection />
-        <SnowCtaStrip />
 
         <LocationFinderSection />
 
         <AboutSection />
-        <SnowCtaStrip />
 
         <WhyChooseUsSection />
-        <SnowCtaStrip />
 
         <ReviewsSection />
-        <SnowCtaStrip />
 
         <ExpertServiceSection />
-        <SnowCtaStrip />
 
         <ResourcesSection />
-        <SnowCtaStrip />
 
         <EstimateBookingSection />
 
         <ServiceAreasSection />
-        <SnowCtaStrip />
 
         <HighlightsSection />
-        <SnowCtaStrip />
 
         <DetailedServicesSection />
-        <SnowCtaStrip />
 
         <ContactSection />
 
         <FaqSection />
-        <SnowCtaStrip variant="dark" message="Ready for same-day snow removal?" />
       </Box>
 
       <SiteFooter />
