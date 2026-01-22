@@ -41,13 +41,22 @@ export default function HeroSection() {
       setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % heroVideos.length);
     };
 
+    const handleCanPlay = () => {
+      // Ensure video plays smoothly
+      video.play().catch(() => {
+        // Autoplay might be blocked, but video will play when user interacts
+      });
+    };
+
     video.addEventListener("ended", handleVideoEnd);
+    video.addEventListener("canplay", handleCanPlay);
     
     // Load the current video
     video.load();
 
     return () => {
       video.removeEventListener("ended", handleVideoEnd);
+      video.removeEventListener("canplay", handleCanPlay);
     };
   }, [currentVideoIndex]);
 
@@ -72,7 +81,6 @@ export default function HeroSection() {
         muted
         playsInline
         preload="auto"
-        poster="https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1800&q=80"
         key={currentVideoIndex}
         sx={{
           position: "absolute",
