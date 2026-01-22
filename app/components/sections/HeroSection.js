@@ -166,7 +166,8 @@ export default function HeroSection() {
           top: { xs: 56, md: 64 },
           left: { xs: 16, md: 24 },
           right: { xs: 16, md: 24 },
-          zIndex: 2
+          zIndex: 2,
+          display: { xs: "none", md: "block" } // Hide on mobile since it's now above the banner
         }}
       >
           <Stack
