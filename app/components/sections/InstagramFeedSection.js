@@ -66,42 +66,49 @@ export default function InstagramFeedSection() {
                   position: "relative",
                   aspectRatio: "9/16", // Instagram reel aspect ratio
                   minHeight: 400,
-                  // Crop container to hide bottom UI elements
-                  clipPath: "inset(0 0 20% 0)" // Hide bottom 20% where UI is
+                  // Aggressively crop to hide all UI elements
+                  clipPath: "inset(0 0 40% 0)", // Hide bottom 40% where all UI is
+                  // Additional overflow hidden to ensure nothing shows
+                  "& iframe": {
+                    pointerEvents: "auto !important"
+                  }
                 }}
               >
-                {/* Instagram iframe embed - positioned to show only video */}
+                {/* Instagram iframe embed - positioned to show only video area */}
                 <Box
                   component="iframe"
                   src={video.embedUrl}
                   sx={{
                     width: "100%",
-                    height: "120%", // Make taller
+                    height: "165%", // Make much taller to account for aggressive cropping
                     border: "none",
                     display: "block",
-                    pointerEvents: "auto",
                     position: "absolute",
-                    top: "-10%", // Shift up to show video area
+                    top: "-32%", // Shift up significantly to center video area
                     left: 0,
-                    objectFit: "cover"
+                    objectFit: "cover",
+                    transform: "scale(1.2)", // Scale up to ensure full coverage
+                    transformOrigin: "center center"
                   }}
                   allow="autoplay; encrypted-media; fullscreen"
                   allowFullScreen
                   title={video.title}
                   loading="lazy"
                   scrolling="no"
+                  frameBorder="0"
                 />
-                {/* Overlay to hide any remaining UI elements at bottom */}
+                {/* Solid overlay to completely hide bottom UI */}
                 <Box
                   sx={{
                     position: "absolute",
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    height: "20%",
-                    background: "linear-gradient(to top, #000000 0%, transparent 100%)",
+                    height: "40%",
+                    background: "#000000", // Solid black to completely hide all UI
                     pointerEvents: "none",
-                    zIndex: 1
+                    zIndex: 10,
+                    borderRadius: "0 0 16px 16px" // Match container border radius
                   }}
                 />
               </Box>
