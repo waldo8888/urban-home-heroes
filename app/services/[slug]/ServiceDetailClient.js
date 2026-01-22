@@ -33,7 +33,8 @@ export default function ServiceDetailClient({ service, related }) {
             alignItems: "center",
             backgroundImage: `url(${service.image})`,
             backgroundSize: "cover",
-            backgroundPosition: "center"
+            backgroundPosition: "center",
+            pt: { xs: 8, md: 0 } // Add top padding on mobile to account for sticky header
           }}
         >
           <Box

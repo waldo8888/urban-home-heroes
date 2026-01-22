@@ -34,7 +34,8 @@ export default function ServicesIndexClient() {
             backgroundImage:
               "url(https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80)",
             backgroundSize: "cover",
-            backgroundPosition: "center"
+            backgroundPosition: "center",
+            pt: { xs: 8, md: 0 } // Add top padding on mobile to account for sticky header
           }}
         >
           <Box
