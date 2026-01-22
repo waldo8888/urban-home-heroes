@@ -12,25 +12,8 @@ import {
   useTheme
 } from "@mui/material";
 import ArrowForwardRounded from "@mui/icons-material/ArrowForwardRounded";
-import { eyebrowStyle, headingStyle, sectionBodyStyle } from "../../lib/sectionStyles";
-
-const resources = [
-  {
-    title: "Dishwasher Not Cleaning",
-    description: "Dishwasher not cleaning properly, possible causes may create serious problems.",
-    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    title: "Fridge Water Issue",
-    description: "Press glass on fridge dispenser, no water comes, fridge stays unresponsive.",
-    image: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    title: "Gas Stove Not Working?",
-    description: "Gas stoves preferred by many. 67% of homeowners choose them over electric stoves.",
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
-  }
-];
+import { headingStyle, sectionBodyStyle } from "../../lib/sectionStyles";
+import { resourceHighlights } from "../../data/resources";
 
 
 
@@ -62,7 +45,7 @@ export default function ResourcesSection() {
           </Grid>
           <Grid item xs={12} md={7}>
             <Grid container spacing={3} className="stagger">
-              {resources.map((resource, index) => (
+              {resourceHighlights.map((resource, index) => (
                 <Grid item xs={12} sm={4} key={resource.title} style={{ "--i": index }}>
                   <Card
                     sx={{
@@ -134,7 +117,7 @@ export default function ResourcesSection() {
             <Stack direction="row" justifyContent="center" mt={4}>
               <Button
                 variant="contained"
-                href="#resources"
+                href="/resources#quick-tips"
                 endIcon={<ArrowForwardRounded />}
                 sx={{
                   bgcolor: "#0e2740",

@@ -18,7 +18,7 @@ const navItems = [
   { label: "Services", href: "/services" },
   { label: "Why Us", href: "/#why-us" },
   { label: "About", href: "/#about" },
-  { label: "Resources", href: "/#resources" }
+  { label: "Resources", href: "/resources" }
 ];
 
 const drawerLinkSx = {

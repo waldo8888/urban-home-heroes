@@ -23,7 +23,7 @@ const serviceLinks = [
 ];
 
 const resourceLinks = [
-  { label: "Expert Tips", href: "/#resources" },
+  { label: "Expert Tips", href: "/resources" },
   { label: "Locations", href: "/#service-areas" },
   { label: "Service List", href: "/services" }
 ];
