@@ -44,6 +44,7 @@ import MajorServicesSection from "./components/sections/MajorServicesSection";
 import SnowRemovalBanner from "./components/sections/SnowRemovalBanner";
 import SnowRemovalFocusSection from "./components/sections/SnowRemovalFocusSection";
 import SeasonalServicesSection from "./components/sections/SeasonalServicesSection";
+import SnowCtaStrip from "./components/sections/SnowCtaStrip";
 import ReviewsSection from "./components/sections/ReviewsSection";
 import LocationFinderSection from "./components/sections/LocationFinderSection";
 import AboutSection from "./components/sections/AboutSection";
@@ -135,22 +136,26 @@ export default function HomePage() {
         <HeroSection />
 
         <SnowRemovalFocusSection />
+        <SnowCtaStrip />
 
         <SeasonalServicesSection />
 
         <StatsSection />
 
         <PrimaryServicesSection />
+        <SnowCtaStrip />
 
         <CommonProblemsSection />
 
         <MajorServicesSection />
+        <SnowCtaStrip />
 
         <LocationFinderSection />
 
         <AboutSection />
 
         <WhyChooseUsSection />
+        <SnowCtaStrip />
 
         <ReviewsSection />
 
@@ -159,6 +164,7 @@ export default function HomePage() {
         <ResourcesSection />
 
         <EstimateBookingSection />
+        <SnowCtaStrip />
 
         <ServiceAreasSection />
 
@@ -169,6 +175,7 @@ export default function HomePage() {
         <ContactSection />
 
         <FaqSection />
+        <SnowCtaStrip variant="dark" message="Ready for same-day snow removal?" />
       </Box>
 
       <SiteFooter />
