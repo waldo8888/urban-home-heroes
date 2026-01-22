@@ -34,7 +34,7 @@ export default function ServiceDetailClient({ service, related }) {
             backgroundImage: `url(${service.image})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            pt: { xs: 8, md: 0 } // Add top padding on mobile to account for sticky header
+            pt: { xs: 12, md: 0 } // Add top padding on mobile to account for sticky header
           }}
         >
           <Box
