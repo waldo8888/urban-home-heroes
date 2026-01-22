@@ -231,25 +231,6 @@ export default function HeroSection() {
               }}
             >
               <Stack spacing={2}>
-                <Box
-                  sx={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    alignSelf: "flex-start",
-                    px: 2.2,
-                    py: 0.6,
-                    borderRadius: "999px",
-                    bgcolor: "rgba(255,255,255,0.16)",
-                    border: "1px solid rgba(255,255,255,0.28)"
-                  }}
-                >
-                  <Typography
-                    variant="overline"
-                    sx={{ letterSpacing: "0.18em", color: "rgba(255,255,255,0.85)", fontWeight: 700 }}
-                  >
-                    Winter Services Now Available — Limited Slots!
-                  </Typography>
-                </Box>
                 <Typography
                   variant="h1"
                   sx={{

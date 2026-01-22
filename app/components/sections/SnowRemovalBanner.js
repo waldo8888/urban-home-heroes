@@ -12,21 +12,21 @@ export default function SnowRemovalBanner() {
         position: "relative",
         background: "linear-gradient(135deg, #0e2740 0%, #1f3a53 100%)",
         color: "#ffffff",
-        py: { xs: 3, md: 3.5 },
-        pt: { xs: 10, md: 3.5 }, // Add top padding to account for fixed header
+        py: { xs: 2, md: 2.5 },
+        pt: { xs: 10, md: 2.5 }, // Add top padding to account for fixed header
         borderBottom: "3px solid #f07a2b"
       }}
     >
       <Container maxWidth="lg">
-        <Stack spacing={2} textAlign="center" alignItems="center">
+        <Stack spacing={1.5} textAlign="center" alignItems="center">
           {/* Banner Alert */}
           <Box
             sx={{
               bgcolor: "rgba(240, 122, 43, 0.2)",
               border: "1px solid rgba(240, 122, 43, 0.4)",
               borderRadius: 2,
-              px: 3,
-              py: 1.5,
+              px: 2.5,
+              py: 1,
               display: "inline-block"
             }}
           >
@@ -35,7 +35,7 @@ export default function SnowRemovalBanner() {
               sx={{
                 color: "#f7a24d",
                 fontWeight: 700,
-                fontSize: { xs: "0.75rem", md: "0.85rem" },
+                fontSize: { xs: "0.7rem", md: "0.8rem" },
                 letterSpacing: "0.15em"
               }}
             >
@@ -47,7 +47,7 @@ export default function SnowRemovalBanner() {
           <Typography
             variant="h1"
             sx={{
-              fontSize: { xs: "1.75rem", md: "2.5rem" },
+              fontSize: { xs: "1.5rem", md: "2rem" },
               fontWeight: 700,
               lineHeight: 1.2,
               color: "#ffffff"
@@ -60,7 +60,7 @@ export default function SnowRemovalBanner() {
           <Typography
             variant="h3"
             sx={{
-              fontSize: { xs: "1.25rem", md: "1.75rem" },
+              fontSize: { xs: "1.1rem", md: "1.4rem" },
               fontWeight: 600,
               color: "rgba(255,255,255,0.95)",
               maxWidth: 900
@@ -73,10 +73,10 @@ export default function SnowRemovalBanner() {
           <Typography
             variant="body1"
             sx={{
-              fontSize: { xs: "0.95rem", md: "1.1rem" },
+              fontSize: { xs: "0.9rem", md: "1rem" },
               color: "rgba(255,255,255,0.9)",
               maxWidth: 800,
-              lineHeight: 1.6
+              lineHeight: 1.5
             }}
           >
             Snow Plowing Services for Residential & Commercial Properties in the GTA
@@ -87,7 +87,7 @@ export default function SnowRemovalBanner() {
             variant="body2"
             sx={{
               color: "rgba(255,255,255,0.8)",
-              fontSize: { xs: "0.85rem", md: "0.95rem" },
+              fontSize: { xs: "0.8rem", md: "0.9rem" },
               maxWidth: 700
             }}
           >
@@ -95,7 +95,7 @@ export default function SnowRemovalBanner() {
           </Typography>
 
           {/* CTA Buttons */}
-          <Stack direction={{ xs: "column", sm: "row" }} spacing={2} mt={1}>
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} mt={0.5}>
             <Button
               variant="contained"
               href="tel:4168229741"
@@ -103,10 +103,10 @@ export default function SnowRemovalBanner() {
               sx={{
                 bgcolor: "#f07a2b",
                 color: "#ffffff",
-                px: 4,
-                py: 1.4,
+                px: 3.5,
+                py: 1.2,
                 fontWeight: 700,
-                fontSize: "0.95rem",
+                fontSize: "0.9rem",
                 borderRadius: 2,
                 boxShadow: "0 8px 24px rgba(240, 122, 43, 0.4)",
                 "&:hover": {
@@ -126,10 +126,10 @@ export default function SnowRemovalBanner() {
                 borderColor: "rgba(255,255,255,0.6)",
                 borderWidth: 2,
                 color: "#ffffff",
-                px: 4,
-                py: 1.4,
+                px: 3.5,
+                py: 1.2,
                 fontWeight: 700,
-                fontSize: "0.95rem",
+                fontSize: "0.9rem",
                 borderRadius: 2,
                 "&:hover": {
                   borderColor: "#ffffff",
