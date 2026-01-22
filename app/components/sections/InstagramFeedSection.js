@@ -85,7 +85,7 @@ export default function InstagramFeedSection() {
           </Typography>
         </Stack>
 
-        {/* Instagram Videos Grid - Clean video-only display */}
+        {/* Instagram Videos Grid - Clean thumbnail display */}
         {loading ? (
           <Box sx={{ textAlign: "center", py: 6 }}>
             <CircularProgress sx={{ color: "#E4405F" }} />
@@ -98,6 +98,10 @@ export default function InstagramFeedSection() {
             {videos.map((video, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Box
+                  component="a"
+                  href={video.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   sx={{
                     borderRadius: 4,
                     overflow: "hidden",
@@ -108,61 +112,47 @@ export default function InstagramFeedSection() {
                     aspectRatio: "9/16",
                     minHeight: 400,
                     cursor: "pointer",
+                    display: "block",
+                    textDecoration: "none",
                     "&:hover .play-overlay": {
-                      opacity: 1
+                      opacity: 1,
+                      transform: "translate(-50%, -50%) scale(1.1)"
+                    },
+                    "&:hover .video-thumbnail": {
+                      transform: "scale(1.05)"
                     }
                   }}
-                  onClick={() => window.open(video.url, '_blank', 'noopener,noreferrer')}
                 >
-                  {/* Clean iframe embed - aggressively cropped to show only video */}
-                  <Box
-                    component="iframe"
-                    src={video.embedUrl}
-                    sx={{
-                      width: "100%",
-                      height: "200%", // Much taller to allow aggressive cropping
-                      border: "none",
-                      display: "block",
-                      position: "absolute",
-                      top: "-50%", // Shift up significantly to center video
-                      left: 0,
-                      pointerEvents: "auto",
-                      transform: "scale(1.3)", // Scale up to ensure full coverage
-                      transformOrigin: "center center",
-                      clipPath: "inset(20% 0 45% 0)" // Crop top 20% and bottom 45% to hide all UI
-                    }}
-                    allow="autoplay; encrypted-media; fullscreen"
-                    allowFullScreen
-                    title={video.title}
-                    loading="lazy"
-                    scrolling="no"
-                  />
-                  {/* Solid overlays to completely hide UI elements */}
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      height: "15%",
-                      background: "#000000",
-                      pointerEvents: "none",
-                      zIndex: 1
-                    }}
-                  />
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      height: "40%",
-                      background: "#000000",
-                      pointerEvents: "none",
-                      zIndex: 1
-                    }}
-                  />
-                  {/* Play button overlay on hover */}
+                  {/* Clean video thumbnail - no UI elements */}
+                  {video.thumbnail ? (
+                    <Box
+                      component="img"
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="video-thumbnail"
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        display: "block",
+                        transition: "transform 0.3s ease"
+                      }}
+                    />
+                  ) : (
+                    <Box
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        bgcolor: "#1a1a1a",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center"
+                      }}
+                    >
+                      <Instagram sx={{ fontSize: 48, color: "rgba(255,255,255,0.3)" }} />
+                    </Box>
+                  )}
+                  {/* Play button overlay - always visible */}
                   <Box
                     className="play-overlay"
                     sx={{
@@ -170,21 +160,40 @@ export default function InstagramFeedSection() {
                       top: "50%",
                       left: "50%",
                       transform: "translate(-50%, -50%)",
-                      bgcolor: "rgba(0, 0, 0, 0.6)",
+                      bgcolor: "rgba(0, 0, 0, 0.7)",
                       borderRadius: "50%",
-                      width: 64,
-                      height: 64,
+                      width: 72,
+                      height: 72,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       color: "#ffffff",
                       pointerEvents: "none",
                       zIndex: 2,
-                      opacity: 0,
-                      transition: "opacity 0.3s ease"
+                      opacity: 0.9,
+                      transition: "all 0.3s ease",
+                      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)"
                     }}
                   >
-                    <PlayArrowRounded sx={{ fontSize: 36 }} />
+                    <PlayArrowRounded sx={{ fontSize: 40, ml: 0.5 }} />
+                  </Box>
+                  {/* Instagram icon badge */}
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: 12,
+                      right: 12,
+                      bgcolor: "rgba(0, 0, 0, 0.6)",
+                      borderRadius: "50%",
+                      width: 36,
+                      height: 36,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      zIndex: 2
+                    }}
+                  >
+                    <Instagram sx={{ fontSize: 20, color: "#ffffff" }} />
                   </Box>
                 </Box>
               </Grid>
