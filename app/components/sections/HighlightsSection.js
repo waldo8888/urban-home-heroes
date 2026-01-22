@@ -50,10 +50,9 @@ export default function HighlightsSection() {
             variant="body1" 
             sx={{ 
               ...sectionBodyStyle, 
-              maxWidth: "100%",
-              width: "100%",
-              textAlign: "center",
-              display: "block"
+              maxWidth: 600,
+              mx: "auto",
+              textAlign: "center"
             }}
           >
             We show up ready for the details that matter most.

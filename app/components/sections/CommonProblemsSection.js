@@ -60,7 +60,7 @@ export default function CommonProblemsSection() {
               Common Home Problems
             </Box>
           </Typography>
-          <Typography variant="body1" sx={{ ...sectionBodyStyle, fontSize: "1.1rem", maxWidth: 800, mx: "auto" }}>
+          <Typography variant="body1" sx={{ ...sectionBodyStyle, fontSize: "1.1rem", maxWidth: 800, mx: "auto", borderStyle: "none", borderWidth: 0, borderColor: "rgba(0, 0, 0, 0)", borderImage: "none", ml: "100px" }}>
             We repair the most common home problems fast, ensuring your home runs smoothly and efficiently again.
           </Typography>
         </Stack>
