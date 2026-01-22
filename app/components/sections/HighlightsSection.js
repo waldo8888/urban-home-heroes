@@ -30,13 +30,14 @@ export default function HighlightsSection() {
       sx={{ ...sectionSpacing, bgcolor: "#f8f4ef" }}
     >
       <Container maxWidth="lg">
-        <Stack spacing={2} textAlign="center" mb={4}>
+        <Stack spacing={2} mb={4} sx={{ textAlign: "center", alignItems: "center" }}>
           <Typography
             variant="h2"
             sx={{
               fontSize: { xs: "1.8rem", md: "2.5rem" },
               fontWeight: 700,
-              color: "#0e2740"
+              color: "#0e2740",
+              textAlign: "center"
             }}
           >
             Special Notes &{" "}
@@ -45,7 +46,16 @@ export default function HighlightsSection() {
             </Box>
           </Typography>
           <Box sx={sectionDivider} />
-          <Typography variant="body1" sx={{ ...sectionBodyStyle, maxWidth: 600 }}>
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              ...sectionBodyStyle, 
+              maxWidth: "100%",
+              width: "100%",
+              textAlign: "center",
+              display: "block"
+            }}
+          >
             We show up ready for the details that matter most.
           </Typography>
         </Stack>
