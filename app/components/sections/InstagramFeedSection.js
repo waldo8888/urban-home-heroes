@@ -1,28 +1,68 @@
 "use client";
 
-import { useEffect } from "react";
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box, Button, Container, Grid, Stack, Typography, CircularProgress } from "@mui/material";
 import Instagram from "@mui/icons-material/Instagram";
 import { eyebrowStyle, headingStyle, sectionBodyStyle, sectionDivider } from "../../lib/sectionStyles";
 
-// Instagram post URLs - you can add more post URLs here
-// To get a post URL: 
-// 1. Go to https://www.instagram.com/urbanhomeheroes
-// 2. Click on a post you want to embed
-// 3. Click the three dots (⋯) in the top right
-// 4. Select "Copy link"
-// 5. Paste the URL here
-// Example format: "https://www.instagram.com/p/ABC123xyz/"
-const instagramPosts = [
-  // Add Instagram post URLs here
+// Instagram username (without @)
+const INSTAGRAM_USERNAME = "urbanhomeheroes";
+
+// Fallback: Manual post URLs if automatic fetching doesn't work
+// To get post URLs: Go to Instagram post → Three dots → Copy link
+const MANUAL_POST_URLS = [
+  // Add Instagram post URLs here as fallback
   // Example: "https://www.instagram.com/p/ABC123xyz/"
 ];
 
 const sectionSpacing = { py: { xs: 8, md: 12 } };
 
 export default function InstagramFeedSection() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    // Load Instagram embed script
+    // Fetch Instagram posts from our Next.js API route
+    const fetchInstagramPosts = async () => {
+      try {
+        setLoading(true);
+        
+        // Call our Next.js API route which handles server-side fetching
+        const response = await fetch('/api/instagram');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch Instagram posts');
+        }
+
+        const data = await response.json();
+        
+        if (data.posts && data.posts.length > 0) {
+          setPosts(data.posts);
+        } else if (MANUAL_POST_URLS.length > 0) {
+          // Use manual post URLs as fallback
+          setPosts(MANUAL_POST_URLS);
+        } else {
+          // No posts found - will show fallback UI
+          setPosts([]);
+        }
+      } catch (err) {
+        console.error('Error fetching Instagram posts:', err);
+        setError(err.message);
+        // Fallback to empty array - will show the placeholder
+        setPosts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInstagramPosts();
+  }, []);
+
+  useEffect(() => {
+    // Load Instagram embed script when posts are available
+    if (posts.length === 0) return;
+
     const loadInstagramScript = () => {
       if (window.instgrm) {
         window.instgrm.Embeds.process();
@@ -50,20 +90,22 @@ export default function InstagramFeedSection() {
       };
     };
 
-    // Load script immediately
-    loadInstagramScript();
-
-    // Also process embeds after a short delay to ensure script is loaded
+    // Load script after a short delay to ensure DOM is ready
     const timeout = setTimeout(() => {
-      if (window.instgrm) {
-        window.instgrm.Embeds.process();
-      }
-    }, 1000);
+      loadInstagramScript();
+      
+      // Process embeds again after script loads
+      setTimeout(() => {
+        if (window.instgrm) {
+          window.instgrm.Embeds.process();
+        }
+      }, 1000);
+    }, 100);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, []);
+  }, [posts]);
 
   return (
     <Box
@@ -86,16 +128,24 @@ export default function InstagramFeedSection() {
           </Typography>
         </Stack>
 
-        {instagramPosts.length > 0 ? (
+        {loading ? (
+          <Box sx={{ textAlign: "center", py: 6 }}>
+            <CircularProgress sx={{ color: "#E4405F" }} />
+            <Typography variant="body2" sx={{ color: "#6a6f75", mt: 2 }}>
+              Loading Instagram posts...
+            </Typography>
+          </Box>
+        ) : posts.length > 0 ? (
           <Grid container spacing={3} justifyContent="center">
-            {instagramPosts.map((postUrl, index) => (
+            {posts.map((postUrl, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Box
                   sx={{
                     borderRadius: 4,
                     overflow: "hidden",
                     boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
-                    border: "1px solid rgba(15, 38, 68, 0.08)"
+                    border: "1px solid rgba(15, 38, 68, 0.08)",
+                    minHeight: 400
                   }}
                 >
                   <blockquote
