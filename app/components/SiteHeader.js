@@ -76,7 +76,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
           })
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{ height: "88px" }}>
           <Toolbar
             sx={{
               justifyContent: "space-between",

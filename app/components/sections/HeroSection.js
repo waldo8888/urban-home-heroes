@@ -257,7 +257,7 @@ export default function HeroSection() {
                 <Typography
                   variant="h1"
                   sx={{
-                    fontSize: { xs: "2.25rem", md: "4rem" },
+                    fontSize: { xs: "3rem", md: "4rem" },
                     fontWeight: 700,
                     mb: 1,
                     color: "#ffffff",
