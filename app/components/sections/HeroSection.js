@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import {
   Box,
   Button,
@@ -20,8 +21,36 @@ const navItems = [
   { label: "Resources", href: "#resources" }
 ];
 
+const heroVideos = [
+  "/13261744_3840_2160_24fps.mp4",
+  "/6007424-uhd_4096_2160_24fps.mp4",
+  "/8964293-uhd_3840_2160_25fps.mp4"
+];
+
 export default function HeroSection() {
   const theme = useTheme();
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleVideoEnd = () => {
+      // Rotate to next video when current one ends
+      setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % heroVideos.length);
+    };
+
+    video.addEventListener("ended", handleVideoEnd);
+    
+    // Load the current video
+    video.load();
+
+    return () => {
+      video.removeEventListener("ended", handleVideoEnd);
+    };
+  }, [currentVideoIndex]);
+
   return (
     <Box
       component="section"
@@ -32,19 +61,44 @@ export default function HeroSection() {
         display: "flex",
         alignItems: "center",
         width: "100%",
-        overflow: "hidden",
-        backgroundImage:
-          "url(https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1800&q=80)",
-        backgroundSize: "cover",
-        backgroundPosition: "center"
+        overflow: "hidden"
       }}
     >
+      {/* Background Video - Rotates through all 3 videos */}
+      <Box
+        component="video"
+        ref={videoRef}
+        autoPlay
+        muted
+        playsInline
+        preload="auto"
+        poster="https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1800&q=80"
+        key={currentVideoIndex}
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: 0,
+          transition: "opacity 0.5s ease-in-out"
+        }}
+      >
+        <source
+          src={heroVideos[currentVideoIndex]}
+          type="video/mp4"
+        />
+      </Box>
+      
+      {/* Gradient Overlay */}
       <Box
         sx={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(110deg, rgba(14, 39, 64, 0.9) 0%, rgba(14, 39, 64, 0.75) 45%, rgba(14, 39, 64, 0.2) 100%)"
+            "linear-gradient(110deg, rgba(14, 39, 64, 0.9) 0%, rgba(14, 39, 64, 0.75) 45%, rgba(14, 39, 64, 0.2) 100%)",
+          zIndex: 1
         }}
       />
       <Box
