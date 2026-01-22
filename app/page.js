@@ -57,6 +57,7 @@ import HighlightsSection from "./components/sections/HighlightsSection";
 import DetailedServicesSection from "./components/sections/DetailedServicesSection";
 import ContactSection from "./components/sections/ContactSection";
 import FaqSection from "./components/sections/FaqSection";
+import InstagramFeedSection from "./components/sections/InstagramFeedSection";
 
 const cardHover = {
   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -158,6 +159,8 @@ export default function HomePage() {
         <SnowCtaStrip />
 
         <ReviewsSection />
+
+        <InstagramFeedSection />
 
         <ExpertServiceSection />
 
