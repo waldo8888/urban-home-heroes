@@ -23,6 +23,7 @@ const navItems = [
 ];
 
 const heroVideos = [
+  "/11297234-uhd_3840_2160_30fps.mp4",
   "/13261744_3840_2160_24fps.mp4",
   "/6007424-uhd_4096_2160_24fps.mp4",
   "/8964293-uhd_3840_2160_25fps.mp4"
