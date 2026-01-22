@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import Instagram from "@mui/icons-material/Instagram";
 import { eyebrowStyle, headingStyle, sectionBodyStyle, sectionDivider } from "../../lib/sectionStyles";
@@ -16,50 +16,19 @@ const instagramPosts = [
 const sectionSpacing = { py: { xs: 8, md: 12 } };
 
 export default function InstagramFeedSection() {
+  const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    // Load Instagram embed script
-    const loadInstagramScript = () => {
-      if (window.instgrm) {
-        window.instgrm.Embeds.process();
-        return;
-      }
-
-      const existingScript = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
-      if (existingScript) {
-        if (window.instgrm) {
-          window.instgrm.Embeds.process();
-        }
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.src = "https://www.instagram.com/embed.js";
-      script.async = true;
-      script.defer = true;
-      document.body.appendChild(script);
-
-      script.onload = () => {
-        if (window.instgrm) {
-          window.instgrm.Embeds.process();
-        }
-      };
-    };
-
-    // Load script after component mounts
-    const timeout = setTimeout(() => {
-      loadInstagramScript();
-      
-      // Process embeds again after script loads
-      setTimeout(() => {
-        if (window.instgrm) {
-          window.instgrm.Embeds.process();
-        }
-      }, 1000);
-    }, 100);
-
-    return () => {
-      clearTimeout(timeout);
-    };
+    // Prepare video data - Instagram embeds will handle playback
+    setLoading(true);
+    const videoData = instagramPosts.map((postUrl) => ({
+      url: postUrl,
+      embedUrl: `${postUrl}embed/`,
+      title: 'Instagram Reel'
+    }));
+    setVideos(videoData);
+    setLoading(false);
   }, []);
 
   return (
@@ -83,41 +52,41 @@ export default function InstagramFeedSection() {
           </Typography>
         </Stack>
 
-        {/* Instagram Posts Grid */}
+        {/* Instagram Videos Grid */}
         <Grid container spacing={3} justifyContent="center">
-          {instagramPosts.map((postUrl, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Box
-                sx={{
-                  borderRadius: 4,
-                  overflow: "hidden",
-                  boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
-                  border: "1px solid rgba(15, 38, 68, 0.08)",
-                  bgcolor: "#ffffff",
-                  minHeight: 400,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center"
+          {videos.map((video, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Box
+                  sx={{
+                    borderRadius: 4,
+                    overflow: "hidden",
+                    boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
+                    border: "1px solid rgba(15, 38, 68, 0.08)",
+                  bgcolor: "#000000",
+                  position: "relative",
+                  aspectRatio: "9/16", // Instagram reel aspect ratio
+                  minHeight: 400
                 }}
               >
-                <blockquote
-                  className="instagram-media"
-                  data-instgrm-permalink={postUrl}
-                  data-instgrm-version="14"
-                  style={{
-                    background: "#FFF",
-                    border: 0,
-                    borderRadius: "16px",
-                    margin: "1px",
-                    maxWidth: "540px",
-                    minWidth: "326px",
-                    padding: 0,
-                    width: "calc(100% - 2px)"
-                  }}
-                />
-              </Box>
-            </Grid>
-          ))}
+                  {/* Instagram iframe embed - plays inline without redirecting */}
+                  <Box
+                    component="iframe"
+                    src={video.embedUrl}
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      border: "none",
+                      display: "block",
+                      pointerEvents: "auto"
+                    }}
+                    allow="autoplay; encrypted-media; fullscreen"
+                    allowFullScreen
+                    title={video.title}
+                    loading="lazy"
+                  />
+                </Box>
+              </Grid>
+            ))}
         </Grid>
 
         <Box sx={{ textAlign: "center", mt: 4 }}>
