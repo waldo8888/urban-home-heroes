@@ -52,41 +52,61 @@ export default function InstagramFeedSection() {
           </Typography>
         </Stack>
 
-        {/* Instagram Videos Grid */}
+        {/* Instagram Videos Grid - Clean video-only display */}
         <Grid container spacing={3} justifyContent="center">
           {videos.map((video, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Box
-                  sx={{
-                    borderRadius: 4,
-                    overflow: "hidden",
-                    boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
-                    border: "1px solid rgba(15, 38, 68, 0.08)",
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Box
+                sx={{
+                  borderRadius: 4,
+                  overflow: "hidden",
+                  boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
+                  border: "1px solid rgba(15, 38, 68, 0.08)",
                   bgcolor: "#000000",
                   position: "relative",
                   aspectRatio: "9/16", // Instagram reel aspect ratio
-                  minHeight: 400
+                  minHeight: 400,
+                  // Crop container to hide bottom UI elements
+                  clipPath: "inset(0 0 20% 0)" // Hide bottom 20% where UI is
                 }}
               >
-                  {/* Instagram iframe embed - plays inline without redirecting */}
-                  <Box
-                    component="iframe"
-                    src={video.embedUrl}
-                    sx={{
-                      width: "100%",
-                      height: "100%",
-                      border: "none",
-                      display: "block",
-                      pointerEvents: "auto"
-                    }}
-                    allow="autoplay; encrypted-media; fullscreen"
-                    allowFullScreen
-                    title={video.title}
-                    loading="lazy"
-                  />
-                </Box>
-              </Grid>
-            ))}
+                {/* Instagram iframe embed - positioned to show only video */}
+                <Box
+                  component="iframe"
+                  src={video.embedUrl}
+                  sx={{
+                    width: "100%",
+                    height: "120%", // Make taller
+                    border: "none",
+                    display: "block",
+                    pointerEvents: "auto",
+                    position: "absolute",
+                    top: "-10%", // Shift up to show video area
+                    left: 0,
+                    objectFit: "cover"
+                  }}
+                  allow="autoplay; encrypted-media; fullscreen"
+                  allowFullScreen
+                  title={video.title}
+                  loading="lazy"
+                  scrolling="no"
+                />
+                {/* Overlay to hide any remaining UI elements at bottom */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: "20%",
+                    background: "linear-gradient(to top, #000000 0%, transparent 100%)",
+                    pointerEvents: "none",
+                    zIndex: 1
+                  }}
+                />
+              </Box>
+            </Grid>
+          ))}
         </Grid>
 
         <Box sx={{ textAlign: "center", mt: 4 }}>
