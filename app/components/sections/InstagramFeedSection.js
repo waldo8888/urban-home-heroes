@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { Box, Button, Container, Grid, Stack, Typography, CircularProgress } from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import Instagram from "@mui/icons-material/Instagram";
 import PlayArrowRounded from "@mui/icons-material/PlayArrowRounded";
 import { eyebrowStyle, headingStyle, sectionBodyStyle, sectionDivider } from "../../lib/sectionStyles";
@@ -17,55 +16,16 @@ const instagramPosts = [
 const sectionSpacing = { py: { xs: 8, md: 12 } };
 
 export default function InstagramFeedSection() {
-  const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const videoRefs = useRef({});
-
-  useEffect(() => {
-    // Fetch video data from Instagram oEmbed API
-    const fetchVideos = async () => {
-      try {
-        setLoading(true);
-        const videoPromises = instagramPosts.map(async (postUrl) => {
-          try {
-            const response = await fetch(`/api/instagram-video?url=${encodeURIComponent(postUrl)}`);
-            if (!response.ok) throw new Error('Failed to fetch');
-            
-            const data = await response.json();
-            
-            // Log for debugging
-            if (!data.thumbnail_url) {
-              console.warn(`No thumbnail URL for ${postUrl}:`, data);
-            }
-            
-            return {
-              url: postUrl,
-              thumbnail: data.thumbnail_url || null,
-              title: data.title || 'Instagram Reel',
-              embedUrl: `${postUrl}embed/`
-            };
-          } catch (error) {
-            console.error(`Error fetching video for ${postUrl}:`, error);
-            return {
-              url: postUrl,
-              thumbnail: null,
-              title: 'Instagram Reel',
-              embedUrl: `${postUrl}embed/`
-            };
-          }
-        });
-
-        const videoData = await Promise.all(videoPromises);
-        setVideos(videoData);
-      } catch (error) {
-        console.error('Error fetching videos:', error);
-      } finally {
-        setLoading(false);
-      }
+  const videos = instagramPosts.map((postUrl) => {
+    const match = postUrl.match(/instagram\.com\/(reel|p)\/([^/?]+)/i);
+    const type = match?.[1] ?? "reel";
+    const id = match?.[2] ?? "";
+    return {
+      url: postUrl,
+      title: "Instagram Reel",
+      embedUrl: id ? `https://www.instagram.com/${type}/${id}/embed/` : postUrl
     };
-
-    fetchVideos();
-  }, []);
+  });
 
   return (
     <Box
@@ -88,121 +48,79 @@ export default function InstagramFeedSection() {
           </Typography>
         </Stack>
 
-        {/* Instagram Videos Grid - Clean thumbnail display */}
-        {loading ? (
-          <Box sx={{ textAlign: "center", py: 6 }}>
-            <CircularProgress sx={{ color: "#E4405F" }} />
-            <Typography variant="body2" sx={{ color: "#6a6f75", mt: 2 }}>
-              Loading videos...
-            </Typography>
-          </Box>
-        ) : (
-          <Grid container spacing={3} justifyContent="center">
-            {videos.map((video, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
+        {/* Instagram Videos Grid - embedded reels */}
+        <Grid container spacing={3} justifyContent="center">
+          {videos.map((video, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Box
+                sx={{
+                  borderRadius: 4,
+                  overflow: "hidden",
+                  boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
+                  border: "1px solid rgba(15, 38, 68, 0.08)",
+                  bgcolor: "#000000",
+                  position: "relative",
+                  aspectRatio: "9/16",
+                  minHeight: 420
+                }}
+              >
                 <Box
-                  component="a"
-                  href={video.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  component="iframe"
+                  src={video.embedUrl}
+                  title={video.title}
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
                   sx={{
-                    borderRadius: 4,
-                    overflow: "hidden",
-                    boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
-                    border: "1px solid rgba(15, 38, 68, 0.08)",
-                    bgcolor: "#000000",
-                    position: "relative",
-                    aspectRatio: "9/16",
-                    minHeight: 400,
-                    cursor: "pointer",
-                    display: "block",
-                    textDecoration: "none",
-                    "&:hover .play-overlay": {
-                      opacity: 1,
-                      transform: "translate(-50%, -50%) scale(1.1)"
-                    },
-                    "&:hover .video-thumbnail": {
-                      transform: "scale(1.05)"
-                    }
+                    width: "100%",
+                    height: "100%",
+                    border: 0
+                  }}
+                />
+                {/* Instagram icon badge */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: 12,
+                    right: 12,
+                    bgcolor: "rgba(0, 0, 0, 0.6)",
+                    borderRadius: "50%",
+                    width: 36,
+                    height: 36,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    zIndex: 2
                   }}
                 >
-                  {/* Clean video thumbnail - no UI elements */}
-                  {video.thumbnail ? (
-                    <Box
-                      component="img"
-                      src={video.thumbnail}
-                      alt={video.title}
-                      className="video-thumbnail"
-                      sx={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        display: "block",
-                        transition: "transform 0.3s ease"
-                      }}
-                    />
-                  ) : (
-                    <Box
-                      sx={{
-                        width: "100%",
-                        height: "100%",
-                        bgcolor: "#1a1a1a",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}
-                    >
-                      <Instagram sx={{ fontSize: 48, color: "rgba(255,255,255,0.3)" }} />
-                    </Box>
-                  )}
-                  {/* Play button overlay - always visible */}
-                  <Box
-                    className="play-overlay"
-                    sx={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      bgcolor: "rgba(0, 0, 0, 0.7)",
-                      borderRadius: "50%",
-                      width: 72,
-                      height: 72,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#ffffff",
-                      pointerEvents: "none",
-                      zIndex: 2,
-                      opacity: 0.9,
-                      transition: "all 0.3s ease",
-                      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)"
-                    }}
-                  >
-                    <PlayArrowRounded sx={{ fontSize: 40, ml: 0.5 }} />
-                  </Box>
-                  {/* Instagram icon badge */}
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: 12,
-                      right: 12,
-                      bgcolor: "rgba(0, 0, 0, 0.6)",
-                      borderRadius: "50%",
-                      width: 36,
-                      height: 36,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      zIndex: 2
-                    }}
-                  >
-                    <Instagram sx={{ fontSize: 20, color: "#ffffff" }} />
-                  </Box>
+                  <Instagram sx={{ fontSize: 20, color: "#ffffff" }} />
                 </Box>
-              </Grid>
-            ))}
-          </Grid>
-        )}
+                {/* Play button overlay */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: 16,
+                    left: 16,
+                    bgcolor: "rgba(0, 0, 0, 0.6)",
+                    borderRadius: "999px",
+                    px: 2,
+                    py: 0.6,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 0.5,
+                    color: "#ffffff",
+                    zIndex: 2,
+                    fontSize: "0.8rem",
+                    fontWeight: 600
+                  }}
+                >
+                  <PlayArrowRounded sx={{ fontSize: 18 }} />
+                  Tap to play
+                </Box>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
 
         <Box sx={{ textAlign: "center", mt: 4 }}>
           <Button
