@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import {
   Box,
   Button,
@@ -53,12 +54,43 @@ const sectionSpacing = { py: { xs: 8, md: 14 } };
 
 export default function PrimaryServicesSection() {
   const theme = useTheme();
+  
+  // Ensure section is visible on mobile
+  useEffect(() => {
+    const section = document.getElementById("services");
+    if (section) {
+      // Check if mobile
+      const isMobile = window.innerWidth <= 900;
+      
+      if (isMobile) {
+        // Force visibility on mobile after a short delay
+        const timer = setTimeout(() => {
+          section.classList.add("is-visible");
+          // Also ensure stagger children are visible
+          const staggerItems = section.querySelectorAll(".stagger > *");
+          staggerItems.forEach((item) => {
+            item.style.opacity = "1";
+            item.style.transform = "translateY(0)";
+          });
+        }, 100);
+        
+        return () => clearTimeout(timer);
+      }
+    }
+  }, []);
+  
   return (
     <Box
       component="section"
       id="services"
       className="reveal"
-      sx={{ ...sectionSpacing, bgcolor: "#ffffff" }}
+      sx={{ 
+        ...sectionSpacing, 
+        bgcolor: "#ffffff",
+        minHeight: { xs: "auto", md: "auto" },
+        position: "relative",
+        zIndex: 1
+      }}
     >
       <Container maxWidth="lg">
         <Stack spacing={3} textAlign="center" mb={8} alignItems="center">

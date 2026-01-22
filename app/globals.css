@@ -63,11 +63,35 @@ section {
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Ensure sections are visible on mobile even if animation hasn't triggered */
+@media (max-width: 900px) {
+  .reveal {
+    /* Start with higher opacity on mobile for better visibility */
+    opacity: 0.5;
+  }
+  
+  .reveal.is-visible {
+    opacity: 1;
+  }
+  
+  /* Ensure services section is always visible on mobile */
+  section#services.reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  section#services.reveal .stagger > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .reveal .stagger > * {

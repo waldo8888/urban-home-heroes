@@ -83,20 +83,41 @@ export default function HomePage() {
       return;
     }
 
+    // More reliable observer with better mobile support
     const observer = new IntersectionObserver(
-      (entries, target) => {
+      (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          target.unobserve(entry.target);
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
         });
       },
-      { threshold: 0.2 }
+      { 
+        threshold: 0.1, // Lower threshold for better mobile detection
+        rootMargin: "0px 0px -50px 0px" // Trigger slightly before element enters viewport
+      }
     );
 
     items.forEach((item) => observer.observe(item));
 
-    return () => observer.disconnect();
+    // Fallback: Make visible after a delay if observer hasn't triggered (mobile safety)
+    const fallbackTimeout = setTimeout(() => {
+      items.forEach((item) => {
+        if (!item.classList.contains("is-visible")) {
+          const rect = item.getBoundingClientRect();
+          const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+          if (isInViewport) {
+            item.classList.add("is-visible");
+          }
+        }
+      });
+    }, 1000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimeout);
+    };
   }, []);
 
   return (
