@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { useEffect, useState, useRef } from "react";
+import { Box, Button, Container, Grid, Stack, Typography, CircularProgress } from "@mui/material";
 import Instagram from "@mui/icons-material/Instagram";
+import PlayArrowRounded from "@mui/icons-material/PlayArrowRounded";
 import { eyebrowStyle, headingStyle, sectionBodyStyle, sectionDivider } from "../../lib/sectionStyles";
 
 // Instagram reel/post URLs
@@ -18,17 +19,49 @@ const sectionSpacing = { py: { xs: 8, md: 12 } };
 export default function InstagramFeedSection() {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const videoRefs = useRef({});
 
   useEffect(() => {
-    // Prepare video data - Instagram embeds will handle playback
-    setLoading(true);
-    const videoData = instagramPosts.map((postUrl) => ({
-      url: postUrl,
-      embedUrl: `${postUrl}embed/`,
-      title: 'Instagram Reel'
-    }));
-    setVideos(videoData);
-    setLoading(false);
+    // Fetch video data from Instagram oEmbed API
+    const fetchVideos = async () => {
+      try {
+        setLoading(true);
+        const videoPromises = instagramPosts.map(async (postUrl) => {
+          try {
+            const response = await fetch(`/api/instagram-video?url=${encodeURIComponent(postUrl)}`);
+            if (!response.ok) throw new Error('Failed to fetch');
+            
+            const data = await response.json();
+            
+            // Use thumbnail as video source (Instagram provides high-quality thumbnails for reels)
+            // For actual video playback, we'll use the embed iframe but style it to show only video
+            return {
+              url: postUrl,
+              thumbnail: data.thumbnail_url,
+              title: data.title || 'Instagram Reel',
+              embedUrl: `${postUrl}embed/`
+            };
+          } catch (error) {
+            console.error(`Error fetching video for ${postUrl}:`, error);
+            return {
+              url: postUrl,
+              thumbnail: null,
+              title: 'Instagram Reel',
+              embedUrl: `${postUrl}embed/`
+            };
+          }
+        });
+
+        const videoData = await Promise.all(videoPromises);
+        setVideos(videoData);
+      } catch (error) {
+        console.error('Error fetching videos:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVideos();
   }, []);
 
   return (
@@ -53,68 +86,111 @@ export default function InstagramFeedSection() {
         </Stack>
 
         {/* Instagram Videos Grid - Clean video-only display */}
-        <Grid container spacing={3} justifyContent="center">
-          {videos.map((video, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Box
-                sx={{
-                  borderRadius: 4,
-                  overflow: "hidden",
-                  boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
-                  border: "1px solid rgba(15, 38, 68, 0.08)",
-                  bgcolor: "#000000",
-                  position: "relative",
-                  aspectRatio: "9/16", // Instagram reel aspect ratio
-                  minHeight: 400,
-                  // Aggressively crop to hide all UI elements
-                  clipPath: "inset(0 0 40% 0)", // Hide bottom 40% where all UI is
-                  // Additional overflow hidden to ensure nothing shows
-                  "& iframe": {
-                    pointerEvents: "auto !important"
-                  }
-                }}
-              >
-                {/* Instagram iframe embed - positioned to show only video area */}
-                <Box
-                  component="iframe"
-                  src={video.embedUrl}
-                  sx={{
-                    width: "100%",
-                    height: "165%", // Make much taller to account for aggressive cropping
-                    border: "none",
-                    display: "block",
-                    position: "absolute",
-                    top: "-32%", // Shift up significantly to center video area
-                    left: 0,
-                    objectFit: "cover",
-                    transform: "scale(1.2)", // Scale up to ensure full coverage
-                    transformOrigin: "center center"
-                  }}
-                  allow="autoplay; encrypted-media; fullscreen"
-                  allowFullScreen
-                  title={video.title}
-                  loading="lazy"
-                  scrolling="no"
-                  frameBorder="0"
-                />
-                {/* Solid overlay to completely hide bottom UI */}
+        {loading ? (
+          <Box sx={{ textAlign: "center", py: 6 }}>
+            <CircularProgress sx={{ color: "#E4405F" }} />
+            <Typography variant="body2" sx={{ color: "#6a6f75", mt: 2 }}>
+              Loading videos...
+            </Typography>
+          </Box>
+        ) : (
+          <Grid container spacing={3} justifyContent="center">
+            {videos.map((video, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <Box
                   sx={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: "40%",
-                    background: "#000000", // Solid black to completely hide all UI
-                    pointerEvents: "none",
-                    zIndex: 10,
-                    borderRadius: "0 0 16px 16px" // Match container border radius
+                    borderRadius: 4,
+                    overflow: "hidden",
+                    boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
+                    border: "1px solid rgba(15, 38, 68, 0.08)",
+                    bgcolor: "#000000",
+                    position: "relative",
+                    aspectRatio: "9/16",
+                    minHeight: 400,
+                    cursor: "pointer",
+                    "&:hover .play-overlay": {
+                      opacity: 1
+                    }
                   }}
-                />
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
+                  onClick={() => window.open(video.url, '_blank', 'noopener,noreferrer')}
+                >
+                  {/* Clean iframe embed - aggressively cropped to show only video */}
+                  <Box
+                    component="iframe"
+                    src={video.embedUrl}
+                    sx={{
+                      width: "100%",
+                      height: "200%", // Much taller to allow aggressive cropping
+                      border: "none",
+                      display: "block",
+                      position: "absolute",
+                      top: "-50%", // Shift up significantly to center video
+                      left: 0,
+                      pointerEvents: "auto",
+                      transform: "scale(1.3)", // Scale up to ensure full coverage
+                      transformOrigin: "center center",
+                      clipPath: "inset(20% 0 45% 0)" // Crop top 20% and bottom 45% to hide all UI
+                    }}
+                    allow="autoplay; encrypted-media; fullscreen"
+                    allowFullScreen
+                    title={video.title}
+                    loading="lazy"
+                    scrolling="no"
+                  />
+                  {/* Solid overlays to completely hide UI elements */}
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: "15%",
+                      background: "#000000",
+                      pointerEvents: "none",
+                      zIndex: 1
+                    }}
+                  />
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: "40%",
+                      background: "#000000",
+                      pointerEvents: "none",
+                      zIndex: 1
+                    }}
+                  />
+                  {/* Play button overlay on hover */}
+                  <Box
+                    className="play-overlay"
+                    sx={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      bgcolor: "rgba(0, 0, 0, 0.6)",
+                      borderRadius: "50%",
+                      width: 64,
+                      height: 64,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#ffffff",
+                      pointerEvents: "none",
+                      zIndex: 2,
+                      opacity: 0,
+                      transition: "opacity 0.3s ease"
+                    }}
+                  >
+                    <PlayArrowRounded sx={{ fontSize: 36 }} />
+                  </Box>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        )}
 
         <Box sx={{ textAlign: "center", mt: 4 }}>
           <Button
