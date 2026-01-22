@@ -10,46 +10,49 @@ export async function GET(request) {
 
   try {
     // Use Instagram's public oEmbed API (no authentication required)
-    const oembedUrl = `https://api.instagram.com/oembed/?url=${encodeURIComponent(postUrl)}`;
+    const oembedUrl = `https://api.instagram.com/oembed/?url=${encodeURIComponent(postUrl)}&omitscript=true`;
     
     const response = await fetch(oembedUrl, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/json',
       },
       next: { revalidate: 3600 } // Cache for 1 hour
     });
 
     if (!response.ok) {
-      throw new Error('Failed to fetch Instagram data');
+      // Log the error for debugging
+      const errorText = await response.text();
+      console.error('Instagram oEmbed API error:', response.status, errorText);
+      throw new Error(`Failed to fetch Instagram data: ${response.status}`);
     }
 
     const data = await response.json();
     
-    // Extract video URL from the HTML embed code
-    // Instagram oEmbed returns HTML with video URL in the embed
-    // We'll parse it to get the direct video URL
-    let videoUrl = null;
+    // Instagram oEmbed returns thumbnail_url for reels
+    // If thumbnail_url is not available, try to construct it from the post ID
+    let thumbnailUrl = data.thumbnail_url;
     
-    // Try to extract video URL from HTML
-    if (data.html) {
-      // Instagram embeds contain video URLs in the iframe src
-      const iframeMatch = data.html.match(/src="([^"]+)"/);
-      if (iframeMatch) {
-        // The iframe URL contains the video data
-        // We'll need to fetch the iframe content to get the actual video URL
-        videoUrl = iframeMatch[1];
-      }
+    if (!thumbnailUrl && data.media_id) {
+      // Fallback: construct thumbnail URL (this may not always work)
+      thumbnailUrl = `https://www.instagram.com/p/${data.media_id}/media/?size=l`;
     }
 
     return NextResponse.json({ 
-      thumbnail_url: data.thumbnail_url,
-      author_name: data.author_name,
-      title: data.title,
+      thumbnail_url: thumbnailUrl,
+      author_name: data.author_name || 'urbanhomeheroes',
+      title: data.title || 'Instagram Reel',
       html: data.html,
-      videoUrl: videoUrl
+      media_id: data.media_id
     });
   } catch (error) {
     console.error('Error fetching Instagram video:', error);
-    return NextResponse.json({ error: 'Failed to fetch video' }, { status: 500 });
+    // Return a response with null thumbnail so the component can handle it gracefully
+    return NextResponse.json({ 
+      thumbnail_url: null,
+      author_name: 'urbanhomeheroes',
+      title: 'Instagram Reel',
+      error: error.message
+    }, { status: 200 }); // Return 200 so component doesn't treat it as an error
   }
 }

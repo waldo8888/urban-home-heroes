@@ -33,11 +33,14 @@ export default function InstagramFeedSection() {
             
             const data = await response.json();
             
-            // Use thumbnail as video source (Instagram provides high-quality thumbnails for reels)
-            // For actual video playback, we'll use the embed iframe but style it to show only video
+            // Log for debugging
+            if (!data.thumbnail_url) {
+              console.warn(`No thumbnail URL for ${postUrl}:`, data);
+            }
+            
             return {
               url: postUrl,
-              thumbnail: data.thumbnail_url,
+              thumbnail: data.thumbnail_url || null,
               title: data.title || 'Instagram Reel',
               embedUrl: `${postUrl}embed/`
             };
