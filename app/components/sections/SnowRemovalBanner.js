@@ -12,12 +12,13 @@ export default function SnowRemovalBanner() {
         position: "relative",
         background: "linear-gradient(135deg, #0e2740 0%, #1f3a53 100%)",
         color: "#ffffff",
-        py: { xs: 4, md: 5 },
+        py: { xs: 3, md: 3.5 },
+        pt: { xs: 10, md: 3.5 }, // Add top padding to account for fixed header
         borderBottom: "3px solid #f07a2b"
       }}
     >
       <Container maxWidth="lg">
-        <Stack spacing={3} textAlign="center" alignItems="center">
+        <Stack spacing={2} textAlign="center" alignItems="center">
           {/* Banner Alert */}
           <Box
             sx={{
@@ -46,9 +47,9 @@ export default function SnowRemovalBanner() {
           <Typography
             variant="h1"
             sx={{
-              fontSize: { xs: "2rem", md: "3rem" },
+              fontSize: { xs: "1.75rem", md: "2.5rem" },
               fontWeight: 700,
-              lineHeight: 1.1,
+              lineHeight: 1.2,
               color: "#ffffff"
             }}
           >
@@ -59,7 +60,7 @@ export default function SnowRemovalBanner() {
           <Typography
             variant="h3"
             sx={{
-              fontSize: { xs: "1.5rem", md: "2rem" },
+              fontSize: { xs: "1.25rem", md: "1.75rem" },
               fontWeight: 600,
               color: "rgba(255,255,255,0.95)",
               maxWidth: 900
@@ -72,10 +73,10 @@ export default function SnowRemovalBanner() {
           <Typography
             variant="body1"
             sx={{
-              fontSize: { xs: "1rem", md: "1.2rem" },
+              fontSize: { xs: "0.95rem", md: "1.1rem" },
               color: "rgba(255,255,255,0.9)",
               maxWidth: 800,
-              lineHeight: 1.7
+              lineHeight: 1.6
             }}
           >
             Snow Plowing Services for Residential & Commercial Properties in the GTA
@@ -86,7 +87,7 @@ export default function SnowRemovalBanner() {
             variant="body2"
             sx={{
               color: "rgba(255,255,255,0.8)",
-              fontSize: { xs: "0.9rem", md: "1rem" },
+              fontSize: { xs: "0.85rem", md: "0.95rem" },
               maxWidth: 700
             }}
           >
@@ -94,7 +95,7 @@ export default function SnowRemovalBanner() {
           </Typography>
 
           {/* CTA Buttons */}
-          <Stack direction={{ xs: "column", sm: "row" }} spacing={2} mt={2}>
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={2} mt={1}>
             <Button
               variant="contained"
               href="tel:4168229741"
@@ -102,10 +103,10 @@ export default function SnowRemovalBanner() {
               sx={{
                 bgcolor: "#f07a2b",
                 color: "#ffffff",
-                px: 5,
-                py: 1.75,
+                px: 4,
+                py: 1.4,
                 fontWeight: 700,
-                fontSize: "1rem",
+                fontSize: "0.95rem",
                 borderRadius: 2,
                 boxShadow: "0 8px 24px rgba(240, 122, 43, 0.4)",
                 "&:hover": {
@@ -125,10 +126,10 @@ export default function SnowRemovalBanner() {
                 borderColor: "rgba(255,255,255,0.6)",
                 borderWidth: 2,
                 color: "#ffffff",
-                px: 5,
-                py: 1.75,
+                px: 4,
+                py: 1.4,
                 fontWeight: 700,
-                fontSize: "1rem",
+                fontSize: "0.95rem",
                 borderRadius: 2,
                 "&:hover": {
                   borderColor: "#ffffff",
