@@ -43,22 +43,42 @@ export default function HeroSection() {
       setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % heroVideos.length);
     };
 
+    const playVideo = async () => {
+      try {
+        video.muted = true;
+        await video.play();
+      } catch (error) {
+        // Autoplay might be blocked, try again after a short delay
+        setTimeout(() => {
+          video.play().catch(() => {
+            // If still blocked, video will play on user interaction
+          });
+        }, 100);
+      }
+    };
+
     const handleCanPlay = () => {
-      // Ensure video plays smoothly
-      video.play().catch(() => {
-        // Autoplay might be blocked, but video will play when user interacts
-      });
+      playVideo();
+    };
+
+    const handleLoadedData = () => {
+      playVideo();
     };
 
     video.addEventListener("ended", handleVideoEnd);
     video.addEventListener("canplay", handleCanPlay);
+    video.addEventListener("loadeddata", handleLoadedData);
     
     // Load the current video
     video.load();
+    
+    // Try to play immediately
+    playVideo();
 
     return () => {
       video.removeEventListener("ended", handleVideoEnd);
       video.removeEventListener("canplay", handleCanPlay);
+      video.removeEventListener("loadeddata", handleLoadedData);
     };
   }, [currentVideoIndex]);
 
@@ -110,6 +130,7 @@ export default function HeroSection() {
         autoPlay
         muted
         playsInline
+        loop={false}
         preload="auto"
         key={currentVideoIndex}
         sx={{

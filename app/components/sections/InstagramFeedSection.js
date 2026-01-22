@@ -43,7 +43,7 @@ export default function InstagramFeedSection() {
             See Our Work on Instagram
           </Typography>
           <Box sx={sectionDivider} />
-          <Typography variant="body1" sx={sectionBodyStyle}>
+          <Typography variant="body1" sx={{ ...sectionBodyStyle, ml: 0 }}>
             Check out our latest projects, before & after photos, and behind-the-scenes content.
           </Typography>
         </Stack>
