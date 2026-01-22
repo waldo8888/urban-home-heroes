@@ -46,7 +46,7 @@ export default function ServiceAreasSection() {
             Areas We Serve
           </Typography>
           <Box sx={sectionDivider} />
-          <Typography variant="body1" sx={{ ...sectionBodyStyle, maxWidth: 720 }}>
+          <Typography variant="body1" sx={{ ...sectionBodyStyle, maxWidth: 720, mx: "auto", textAlign: "center" }}>
             Looking for a local contractor near you? Urban Home Heroes is a licensed contractor serving Vaughan, Woodbridge, and the GTA as your reliable GTA contractor team. If you are searching for a contractor near Vaughan or contractor near Woodbridge, our professional, affordable contractor team can help.
           </Typography>
         </Stack>

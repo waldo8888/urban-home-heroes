@@ -71,7 +71,7 @@ export default function MajorServicesSection() {
               Major Home Services
             </Box>
           </Typography>
-          <Typography variant="body1" sx={{ ...sectionBodyStyle, fontSize: "1.1rem", maxWidth: 800, mx: "auto" }}>
+          <Typography variant="body1" sx={{ ...sectionBodyStyle, fontSize: "1.1rem", maxWidth: 800, mx: "auto", textAlign: "center" }}>
             We repair common home issues quickly and professionally to keep your home running smoothly always.
           </Typography>
         </Stack>
