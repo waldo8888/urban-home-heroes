@@ -64,16 +64,18 @@ export default function MajorServicesSection() {
       sx={{ ...sectionSpacing, bgcolor: "#f8f4ef" }}
     >
       <Container maxWidth="lg">
-        <Stack spacing={2} textAlign="center" mb={8}>
-          <Typography variant="h2" sx={{ ...headingStyle, fontSize: { xs: "2rem", md: "2.75rem" } }}>
+        <Stack spacing={2} mb={8} sx={{ textAlign: "center", alignItems: "center" }}>
+          <Typography variant="h2" sx={{ ...headingStyle, fontSize: { xs: "2rem", md: "2.75rem" }, textAlign: "center" }}>
             We Repair and Service All{" "}
             <Box component="span" sx={{ color: "#0e2740" }}>
               Major Home Services
             </Box>
           </Typography>
-          <Typography variant="body1" sx={{ ...sectionBodyStyle, fontSize: "1.1rem", maxWidth: 800, mx: "auto", textAlign: "center" }}>
-            We repair common home issues quickly and professionally to keep your home running smoothly always.
-          </Typography>
+          <Box sx={{ maxWidth: 800, mx: "auto", textAlign: "center" }}>
+            <Typography variant="body1" sx={{ ...sectionBodyStyle, fontSize: "1.1rem", textAlign: "center", display: "block" }}>
+              We repair common home issues quickly and professionally to keep your home running smoothly always.
+            </Typography>
+          </Box>
         </Stack>
 
         {/* Mobile Banner */}

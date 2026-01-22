@@ -34,21 +34,31 @@ export default function ServiceAreasSection() {
       sx={{ py: { xs: 6, md: 9 }, bgcolor: "#ffffff" }}
     >
       <Container maxWidth="lg">
-        <Stack spacing={2} textAlign="center" mb={4}>
+        <Stack spacing={2} mb={4} sx={{ textAlign: "center", alignItems: "center" }}>
           <Typography
             variant="h2"
             sx={{
               fontSize: { xs: "1.8rem", md: "2.5rem" },
               fontWeight: 700,
-              color: "#0e2740"
+              color: "#0e2740",
+              textAlign: "center"
             }}
           >
             Areas We Serve
           </Typography>
           <Box sx={sectionDivider} />
-          <Typography variant="body1" sx={{ ...sectionBodyStyle, maxWidth: 720, mx: "auto", textAlign: "center" }}>
-            Looking for a local contractor near you? Urban Home Heroes is a licensed contractor serving Vaughan, Woodbridge, and the GTA as your reliable GTA contractor team. If you are searching for a contractor near Vaughan or contractor near Woodbridge, our professional, affordable contractor team can help.
-          </Typography>
+          <Box sx={{ maxWidth: 720, mx: "auto", textAlign: "center" }}>
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                ...sectionBodyStyle, 
+                textAlign: "center",
+                display: "block"
+              }}
+            >
+              Looking for a local contractor near you? Urban Home Heroes is a licensed contractor serving Vaughan, Woodbridge, and the GTA as your reliable GTA contractor team. If you are searching for a contractor near Vaughan or contractor near Woodbridge, our professional, affordable contractor team can help.
+            </Typography>
+          </Box>
         </Stack>
         <Grid container spacing={2} className="stagger" mb={4}>
           {serviceAreas.map((area, index) => (
