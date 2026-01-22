@@ -1,111 +1,43 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Box, Button, Container, Grid, Stack, Typography, CircularProgress } from "@mui/material";
+import { useEffect } from "react";
+import Script from "next/script";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import Instagram from "@mui/icons-material/Instagram";
 import { eyebrowStyle, headingStyle, sectionBodyStyle, sectionDivider } from "../../lib/sectionStyles";
 
 // Instagram username (without @)
 const INSTAGRAM_USERNAME = "urbanhomeheroes";
 
-// Fallback: Manual post URLs if automatic fetching doesn't work
-// To get post URLs: Go to Instagram post → Three dots → Copy link
-const MANUAL_POST_URLS = [
-  // Add Instagram post URLs here as fallback
-  // Example: "https://www.instagram.com/p/ABC123xyz/"
-];
+// Third-party widget options:
+// Option 1: SnapWidget (Free) - Get widget code from https://snapwidget.com/
+// Option 2: Elfsight (Free tier available) - Get widget code from https://elfsight.com/instagram-feed/
+// Option 3: Juicer (Free tier available) - Get widget code from https://www.juicer.io/
 
+// To use a third-party widget:
+// 1. Sign up for a free account at one of the services above
+// 2. Create an Instagram feed widget for @urbanhomeheroes
+// 3. Copy the embed code/script they provide
+// 4. Replace the WIDGET_SCRIPT_SRC below with the script src from the widget
+
+// Example SnapWidget embed (replace with your actual widget ID):
+// const WIDGET_SCRIPT_SRC = "https://snapwidget.com/js/snapwidget.js";
+// const WIDGET_ID = "YOUR_WIDGET_ID"; // Get this from SnapWidget dashboard
+
+// Example Elfsight embed (replace with your actual widget code):
+// You'll get an HTML snippet like: <div class="elfsight-app-XXXXX"></div>
+// Extract the widget ID from the class name
+
+// For now, using SnapWidget public feed (no account needed for basic display)
 const sectionSpacing = { py: { xs: 8, md: 12 } };
 
 export default function InstagramFeedSection() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   useEffect(() => {
-    // Fetch Instagram posts from our Next.js API route
-    const fetchInstagramPosts = async () => {
-      try {
-        setLoading(true);
-        
-        // Call our Next.js API route which handles server-side fetching
-        const response = await fetch('/api/instagram');
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch Instagram posts');
-        }
-
-        const data = await response.json();
-        
-        if (data.posts && data.posts.length > 0) {
-          setPosts(data.posts);
-        } else if (MANUAL_POST_URLS.length > 0) {
-          // Use manual post URLs as fallback
-          setPosts(MANUAL_POST_URLS);
-        } else {
-          // No posts found - will show fallback UI
-          setPosts([]);
-        }
-      } catch (err) {
-        console.error('Error fetching Instagram posts:', err);
-        setError(err.message);
-        // Fallback to empty array - will show the placeholder
-        setPosts([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchInstagramPosts();
+    // Initialize Elfsight widgets after script loads
+    if (window.Elfsight) {
+      window.Elfsight.init();
+    }
   }, []);
-
-  useEffect(() => {
-    // Load Instagram embed script when posts are available
-    if (posts.length === 0) return;
-
-    const loadInstagramScript = () => {
-      if (window.instgrm) {
-        window.instgrm.Embeds.process();
-        return;
-      }
-
-      const existingScript = document.querySelector('script[src="https://www.instagram.com/embed.js"]');
-      if (existingScript) {
-        if (window.instgrm) {
-          window.instgrm.Embeds.process();
-        }
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.src = "https://www.instagram.com/embed.js";
-      script.async = true;
-      script.defer = true;
-      document.body.appendChild(script);
-
-      script.onload = () => {
-        if (window.instgrm) {
-          window.instgrm.Embeds.process();
-        }
-      };
-    };
-
-    // Load script after a short delay to ensure DOM is ready
-    const timeout = setTimeout(() => {
-      loadInstagramScript();
-      
-      // Process embeds again after script loads
-      setTimeout(() => {
-        if (window.instgrm) {
-          window.instgrm.Embeds.process();
-        }
-      }, 1000);
-    }, 100);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [posts]);
 
   return (
     <Box
@@ -128,85 +60,80 @@ export default function InstagramFeedSection() {
           </Typography>
         </Stack>
 
-        {loading ? (
-          <Box sx={{ textAlign: "center", py: 6 }}>
-            <CircularProgress sx={{ color: "#E4405F" }} />
-            <Typography variant="body2" sx={{ color: "#6a6f75", mt: 2 }}>
-              Loading Instagram posts...
-            </Typography>
-          </Box>
-        ) : posts.length > 0 ? (
-          <Grid container spacing={3} justifyContent="center">
-            {posts.map((postUrl, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Box
-                  sx={{
-                    borderRadius: 4,
-                    overflow: "hidden",
-                    boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
-                    border: "1px solid rgba(15, 38, 68, 0.08)",
-                    minHeight: 400
-                  }}
-                >
-                  <blockquote
-                    className="instagram-media"
-                    data-instgrm-permalink={postUrl}
-                    data-instgrm-version="14"
-                    style={{
-                      background: "#FFF",
-                      border: 0,
-                      borderRadius: "16px",
-                      margin: "1px",
-                      maxWidth: "540px",
-                      minWidth: "326px",
-                      padding: 0,
-                      width: "calc(100% - 2px)"
-                    }}
-                  />
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        ) : (
-          <Box
-            sx={{
-              textAlign: "center",
-              py: 6,
-              px: 3,
-              borderRadius: 4,
-              bgcolor: "#ffffff",
-              border: "1px solid rgba(15, 38, 68, 0.08)"
+        {/* Third-Party Instagram Widget Container */}
+        {/* 
+          SETUP INSTRUCTIONS:
+          
+          Option 1: Elfsight (Recommended - Free tier available)
+          1. Go to https://elfsight.com/instagram-feed/
+          2. Click "Get Widget for Free"
+          3. Sign up for a free account
+          4. Create a new Instagram Feed widget
+          5. Enter username: urbanhomeheroes
+          6. Customize the widget (layout, colors, etc.)
+          7. Click "Get Code" and copy the widget ID (looks like: elfsight-app-XXXXX)
+          8. Replace "YOUR_ELFSIGHT_WIDGET_ID" below with your widget ID
+          
+          Option 2: SnapWidget (Free)
+          1. Go to https://snapwidget.com/
+          2. Sign up for free account
+          3. Create Instagram feed for @urbanhomeheroes
+          4. Get embed code and use the iframe method below
+        */}
+        
+        {/* Elfsight Widget - Replace YOUR_ELFSIGHT_WIDGET_ID with your actual widget ID */}
+        <Box
+          sx={{
+            borderRadius: 4,
+            overflow: "hidden",
+            boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
+            border: "1px solid rgba(15, 38, 68, 0.08)",
+            bgcolor: "#ffffff",
+            p: 3,
+            minHeight: 400
+          }}
+        >
+          <div 
+            className="elfsight-app-YOUR_ELFSIGHT_WIDGET_ID" 
+            data-elfsight-app-lazy
+            style={{ width: "100%", minHeight: 400 }}
+          />
+          <Script 
+            src="https://static.elfsight.com/platform/platform.js" 
+            strategy="lazyOnload"
+            onLoad={() => {
+              if (window.Elfsight) {
+                window.Elfsight.init();
+              }
             }}
-          >
-            <Instagram sx={{ fontSize: 64, color: "#E4405F", mb: 2 }} />
-            <Typography variant="h5" sx={{ fontWeight: 700, color: "#0e2740", mb: 1 }}>
-              Follow @urbanhomeheroes
-            </Typography>
-            <Typography variant="body1" sx={{ color: "#6a6f75", mb: 3 }}>
-              Visit our Instagram to see our latest work and projects.
-            </Typography>
-            <Button
-              variant="contained"
-              href="https://www.instagram.com/urbanhomeheroes"
-              target="_blank"
-              rel="noopener noreferrer"
-              startIcon={<Instagram />}
-              sx={{
-                bgcolor: "#E4405F",
-                color: "#ffffff",
-                px: 4,
-                py: 1.4,
-                fontWeight: 700,
-                "&:hover": {
-                  bgcolor: "#C13584",
-                  transform: "translateY(-2px)"
-                }
-              }}
-            >
-              View Instagram Profile
-            </Button>
-          </Box>
-        )}
+          />
+        </Box>
+
+        {/* Alternative: SnapWidget iframe (uncomment and use if preferred) */}
+        {/*
+        <Box
+          sx={{
+            borderRadius: 4,
+            overflow: "hidden",
+            boxShadow: "0 16px 36px rgba(18, 38, 62, 0.12)",
+            border: "1px solid rgba(15, 38, 68, 0.08)",
+            bgcolor: "#ffffff",
+            minHeight: 400
+          }}
+        >
+          <Box
+            component="iframe"
+            src={`https://snapwidget.com/embed/${INSTAGRAM_USERNAME}`}
+            sx={{
+              width: "100%",
+              height: "600px",
+              border: "none",
+              borderRadius: 4
+            }}
+            title="Instagram Feed"
+          />
+        </Box>
+        */}
 
         <Box sx={{ textAlign: "center", mt: 4 }}>
           <Button
