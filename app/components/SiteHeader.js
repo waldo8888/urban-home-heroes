@@ -179,7 +179,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
                 display: { xs: "none", sm: "flex" }
               }}
             >
-              Easy Online Booking
+              Request Same-Day Service
             </Button>
 
             <IconButton
@@ -243,7 +243,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
               onClick={() => setMobileMenuOpen(false)}
               sx={{ mt: 2 }}
             >
-              Easy Online Booking
+              Request Same-Day Service
             </Button>
           </Stack>
         </Box>

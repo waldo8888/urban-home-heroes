@@ -4,7 +4,12 @@ import { Box, Button } from "@mui/material";
 import PhoneRounded from "@mui/icons-material/PhoneRounded";
 import RequestQuoteRounded from "@mui/icons-material/RequestQuoteRounded";
 
-export default function MobileCtaBar({ callHref = "tel:4168229741", quoteHref = "/#estimate" }) {
+export default function MobileCtaBar({
+  callHref = "tel:4168229741",
+  quoteHref = "/#estimate",
+  callLabel = "Call",
+  quoteLabel = "Get Quote"
+}) {
   return (
     <Box
       sx={{
@@ -32,13 +37,15 @@ export default function MobileCtaBar({ callHref = "tel:4168229741", quoteHref = 
           borderRadius: 0,
           borderRight: "1px solid rgba(255,255,255,0.2)",
           transition: "all 0.2s ease",
+          whiteSpace: "normal",
+          textAlign: "center",
           "&:hover": {
             bgcolor: "rgba(255,255,255,0.1)"
           }
         }}
         startIcon={<PhoneRounded />}
       >
-        Call
+        {callLabel}
       </Button>
       <Button
         component="a"
@@ -50,13 +57,15 @@ export default function MobileCtaBar({ callHref = "tel:4168229741", quoteHref = 
           fontWeight: 600,
           borderRadius: 0,
           transition: "all 0.2s ease",
+          whiteSpace: "normal",
+          textAlign: "center",
           "&:hover": {
             bgcolor: "rgba(255,255,255,0.1)"
           }
         }}
         startIcon={<RequestQuoteRounded />}
       >
-        Get Quote
+        {quoteLabel}
       </Button>
     </Box>
   );

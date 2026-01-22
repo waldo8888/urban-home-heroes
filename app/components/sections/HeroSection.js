@@ -11,8 +11,9 @@ import {
   useTheme
 } from "@mui/material";
 import CheckCircleRounded from "@mui/icons-material/CheckCircleRounded";
+import StarRounded from "@mui/icons-material/StarRounded";
 
-const heroTrustTags = ["Insured contractor", "Local family business", "No job too small"];
+const heroTrustTags = ["Insured contractor", "Same-day snow removal", "Transparent pricing"];
 
 const navItems = [
   { label: "Services", href: "#services" },
@@ -73,6 +74,34 @@ export default function HeroSection() {
         overflow: "hidden"
       }}
     >
+      <Box
+        sx={{
+          position: "absolute",
+          top: { xs: 10, md: 14 },
+          left: { xs: 12, md: 24 },
+          right: { xs: 12, md: 24 },
+          zIndex: 3,
+          display: "flex",
+          justifyContent: "center"
+        }}
+      >
+        <Box
+          sx={{
+            px: { xs: 2.5, md: 3 },
+            py: 0.75,
+            borderRadius: "999px",
+            bgcolor: "rgba(240, 122, 43, 0.95)",
+            color: "#ffffff",
+            fontWeight: 700,
+            fontSize: { xs: "0.78rem", md: "0.85rem" },
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            boxShadow: "0 8px 20px rgba(240, 122, 43, 0.35)"
+          }}
+        >
+          Snow Removal & Plowing Services GTA
+        </Box>
+      </Box>
       {/* Background Video - Rotates through all 3 videos */}
       <Box
         component="video"
@@ -112,7 +141,7 @@ export default function HeroSection() {
       <Box
         sx={{
           position: "absolute",
-          top: { xs: 16, md: 24 },
+          top: { xs: 56, md: 64 },
           left: { xs: 16, md: 24 },
           right: { xs: 16, md: 24 },
           zIndex: 2
@@ -182,7 +211,7 @@ export default function HeroSection() {
                 "&:hover": { borderColor: "#ffffff", bgcolor: "rgba(255,255,255,0.12)" }
               }}
             >
-              Easy Online Booking
+              Request Same-Day Service
             </Button>
           </Stack>
       </Box>
@@ -202,12 +231,25 @@ export default function HeroSection() {
               }}
             >
               <Stack spacing={2}>
-                <Typography
-                  variant="overline"
-                  sx={{ letterSpacing: "0.2em", color: "rgba(255,255,255,0.7)", fontWeight: 600 }}
+                <Box
+                  sx={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    alignSelf: "flex-start",
+                    px: 2.2,
+                    py: 0.6,
+                    borderRadius: "999px",
+                    bgcolor: "rgba(255,255,255,0.16)",
+                    border: "1px solid rgba(255,255,255,0.28)"
+                  }}
                 >
-                  Your Local Fix-It Hero
-                </Typography>
+                  <Typography
+                    variant="overline"
+                    sx={{ letterSpacing: "0.18em", color: "rgba(255,255,255,0.85)", fontWeight: 700 }}
+                  >
+                    Winter Services Now Available — Limited Slots!
+                  </Typography>
+                </Box>
                 <Typography
                   variant="h1"
                   sx={{
@@ -219,7 +261,7 @@ export default function HeroSection() {
                     letterSpacing: "-0.03em"
                   }}
                 >
-                  Reliable Contractor Services Near You
+                  Snow Removal in Woodbridge & Vaughan — Professional Driveway Clearing
                 </Typography>
                 <Typography
                   variant="body1"
@@ -229,7 +271,10 @@ export default function HeroSection() {
                     lineHeight: 1.7
                   }}
                 >
-                  Busy homeowners, seniors, and families trust Urban Home Heroes for fast, honest, and professional home repairs with transparent pricing and quality workmanship.
+                  Snow plowing services for residential and commercial properties in the GTA with same-day response and clear pricing.
+                </Typography>
+                <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.75)" }}>
+                  Serving snow removal clients in Woodbridge, Vaughan, Brampton, Etobicoke, North York and Mississauga.
                 </Typography>
                 <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
                   <Button
@@ -250,7 +295,7 @@ export default function HeroSection() {
                       }
                     }}
                   >
-                    Get a Free Estimate
+                    Get Snow Removal Quote
                   </Button>
                   <Button
                     variant="outlined"
@@ -281,6 +326,16 @@ export default function HeroSection() {
                       </Typography>
                     </Stack>
                   ))}
+                </Stack>
+                <Stack direction="row" spacing={1} alignItems="center" sx={{ pt: 1 }}>
+                  <Stack direction="row" spacing={0.3}>
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <StarRounded key={index} sx={{ color: "#f7a24d", fontSize: "1.1rem" }} />
+                    ))}
+                  </Stack>
+                  <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.85)", fontWeight: 600 }}>
+                    “Fast, reliable snow removal — arrived before sunrise!” — Client
+                  </Typography>
                 </Stack>
               </Stack>
             </Box>

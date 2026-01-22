@@ -41,6 +41,11 @@ import StatsSection from "./components/sections/StatsSection";
 import PrimaryServicesSection from "./components/sections/PrimaryServicesSection";
 import CommonProblemsSection from "./components/sections/CommonProblemsSection";
 import MajorServicesSection from "./components/sections/MajorServicesSection";
+import SnowRemovalBanner from "./components/sections/SnowRemovalBanner";
+import SnowRemovalFocusSection from "./components/sections/SnowRemovalFocusSection";
+import SeasonalServicesSection from "./components/sections/SeasonalServicesSection";
+import SnowCtaStrip from "./components/sections/SnowCtaStrip";
+import ReviewsSection from "./components/sections/ReviewsSection";
 import LocationFinderSection from "./components/sections/LocationFinderSection";
 import AboutSection from "./components/sections/AboutSection";
 import WhyChooseUsSection from "./components/sections/WhyChooseUsSection";
@@ -125,41 +130,66 @@ export default function HomePage() {
     <Box className="page" id="top" sx={{ bgcolor: "transparent" }}>
       <SiteHeader hideOnMobile={true} />
       <Box component="main">
+        {/* Snow Removal Banner - At the very top */}
+        <SnowRemovalBanner />
+        
         <HeroSection />
+        <SnowCtaStrip />
+
+        <SnowRemovalFocusSection />
+        <SnowCtaStrip />
+
+        <SeasonalServicesSection />
+        <SnowCtaStrip />
 
         <StatsSection />
+        <SnowCtaStrip />
 
         <PrimaryServicesSection />
+        <SnowCtaStrip />
 
         <CommonProblemsSection />
+        <SnowCtaStrip />
 
         <MajorServicesSection />
+        <SnowCtaStrip />
 
         <LocationFinderSection />
 
         <AboutSection />
+        <SnowCtaStrip />
 
         <WhyChooseUsSection />
+        <SnowCtaStrip />
+
+        <ReviewsSection />
+        <SnowCtaStrip />
 
         <ExpertServiceSection />
+        <SnowCtaStrip />
 
         <ResourcesSection />
+        <SnowCtaStrip />
 
         <EstimateBookingSection />
 
         <ServiceAreasSection />
+        <SnowCtaStrip />
 
         <HighlightsSection />
+        <SnowCtaStrip />
 
         <DetailedServicesSection />
+        <SnowCtaStrip />
 
         <ContactSection />
 
         <FaqSection />
+        <SnowCtaStrip variant="dark" message="Ready for same-day snow removal?" />
       </Box>
 
       <SiteFooter />
-      <MobileCtaBar quoteHref="#estimate" />
+      <MobileCtaBar quoteHref="#estimate" callLabel="Call Now" quoteLabel="Get Snow Removal Quote" />
     </Box>
   );
 }

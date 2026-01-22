@@ -16,6 +16,7 @@ import PlaceRounded from "@mui/icons-material/PlaceRounded";
 import YouTube from "@mui/icons-material/YouTube";
 
 const serviceLinks = [
+  { label: "Winter Services", href: "/winter-services" },
   { label: "Contractor Services", href: "/services/contractor-services" },
   { label: "Snow Removal", href: "/services/snow-removal" },
   { label: "Flooring Installation", href: "/services/flooring-installation" },
