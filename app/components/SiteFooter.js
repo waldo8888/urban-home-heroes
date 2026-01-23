@@ -45,7 +45,7 @@ export default function SiteFooter() {
     >
       <Container maxWidth="xl" sx={{ position: "relative", zIndex: 1 }}>
         <Grid container spacing={6}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <Stack direction="row" spacing={2} alignItems="center" mb={3}>
               <Box
                 component="img"
@@ -59,7 +59,7 @@ export default function SiteFooter() {
                 }}
               />
               <Box>
-                <Typography variant="h5" sx={{ fontWeight: 800, mb: 0.5, lineHeight: 1 }}>
+                <Typography variant="h5" sx={{ fontWeight: 800, mb: 0.5, lineHeight: 1, color: "#ffffff" }}>
                   Urban<br />Home Heroes
                 </Typography>
               </Box>
@@ -117,10 +117,13 @@ export default function SiteFooter() {
                   {item}
                 </Button>
               ))}
+              <Divider sx={{ borderColor: "rgba(255,255,255,0.1)", my: 1 }} />
+              <Button sx={{ color: "rgba(255,255,255,0.5)", justifyContent: "flex-start", px: 0, fontSize: "0.75rem", minHeight: "32px" }}>Privacy Policy</Button>
+              <Button sx={{ color: "rgba(255,255,255,0.5)", justifyContent: "flex-start", px: 0, fontSize: "0.75rem", minHeight: "32px" }}>Terms of Service</Button>
             </Stack>
           </Grid>
 
-          <Grid item xs={6} md={3}>
+          <Grid item xs={6} md={2}>
             <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 3, color: "#f07a2b" }}>
               Services
             </Typography>
@@ -144,18 +147,37 @@ export default function SiteFooter() {
             </Stack>
           </Grid>
 
+          <Grid item xs={12} md={2}>
+            <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 3, color: "#f07a2b" }}>
+              Service Areas
+            </Typography>
+            <Stack spacing={1}>
+              {["Vaughan / Woodbridge", "Kleinburg", "North York", "Etobicoke (North & Central)", "Brampton (SW areas)", "Mississauga"].map((area) => (
+                <Typography key={area} variant="body2" sx={{ color: "rgba(255,255,255,0.7)" }}>{area}</Typography>
+              ))}
+            </Stack>
+          </Grid>
+
           <Grid item xs={12} md={3}>
             <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 3, color: "#f07a2b" }}>
-              Legal
+              Contact
             </Typography>
-            <Stack spacing={1.5}>
-              <Button sx={{ color: "rgba(255,255,255,0.7)", justifyContent: "flex-start", px: 0 }}>Privacy Policy</Button>
-              <Button sx={{ color: "rgba(255,255,255,0.7)", justifyContent: "flex-start", px: 0 }}>Terms of Service</Button>
+            <Stack spacing={2}>
+              <Box>
+                <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.5)", display: "block" }}>Call Us</Typography>
+                <Box component="a" href="tel:4168229741" sx={{ color: "#fff", display: "block", textDecoration: "none" }}>416-822-9741</Box>
+                <Box component="a" href="tel:4375365336" sx={{ color: "rgba(255,255,255,0.7)", display: "block", textDecoration: "none", fontSize: "0.9rem" }}>437-536-5336</Box>
+              </Box>
+              <Box>
+                <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.5)", display: "block" }}>Email</Typography>
+                <Box component="a" href="mailto:urbanhomeheroes@gmail.com" sx={{ color: "#fff", display: "block", textDecoration: "none" }}>urbanhomeheroes@gmail.com</Box>
+                <Box component="a" href="mailto:info@urbanhomeheroes.ca" sx={{ color: "rgba(255,255,255,0.7)", display: "block", textDecoration: "none", fontSize: "0.9rem" }}>info@urbanhomeheroes.ca</Box>
+              </Box>
             </Stack>
 
-            <Box sx={{ mt: 4, p: 2, borderRadius: 2, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
-              <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.5)", display: "block" }}>
-                © 2026 Urban Home Heroes.
+            <Box sx={{ mt: 4 }}>
+              <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.3)" }}>
+                Estimates provided after site inspection.
               </Typography>
             </Box>
           </Grid>

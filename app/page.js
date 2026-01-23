@@ -6,27 +6,20 @@ import SiteFooter from "./components/SiteFooter";
 import MobileCtaBar from "./components/MobileCtaBar";
 import MobileHeroNav from "./components/MobileHeroNav";
 import HeroSection from "./components/sections/HeroSection";
-import StatsSection from "./components/sections/StatsSection";
-import PrimaryServicesSection from "./components/sections/PrimaryServicesSection";
-import CommonProblemsSection from "./components/sections/CommonProblemsSection";
-import MajorServicesSection from "./components/sections/MajorServicesSection";
 import SnowRemovalBanner from "./components/sections/SnowRemovalBanner";
-import SnowRemovalFocusSection from "./components/sections/SnowRemovalFocusSection";
-import SeasonalServicesSection from "./components/sections/SeasonalServicesSection";
-import SnowCtaStrip from "./components/sections/SnowCtaStrip";
-import ReviewsSection from "./components/sections/ReviewsSection";
-import LocationFinderSection from "./components/sections/LocationFinderSection";
-import AboutSection from "./components/sections/AboutSection";
-import WhyChooseUsSection from "./components/sections/WhyChooseUsSection";
-import ExpertServiceSection from "./components/sections/ExpertServiceSection";
-import ResourcesSection from "./components/sections/ResourcesSection";
-import EstimateBookingSection from "./components/sections/EstimateBookingSection";
-import ServiceAreasSection from "./components/sections/ServiceAreasSection";
-import HighlightsSection from "./components/sections/HighlightsSection";
-import DetailedServicesSection from "./components/sections/DetailedServicesSection";
-import ContactSection from "./components/sections/ContactSection";
-import FaqSection from "./components/sections/FaqSection";
-import InstagramFeedSection from "./components/sections/InstagramFeedSection";
+
+// Scrollytelling Components
+import ScrollytellingWrapper from "./components/scrollytelling/ScrollytellingWrapper";
+import BrandStatementSection from "./components/scrollytelling/BrandStatementSection";
+import ServicesShowcase from "./components/scrollytelling/ServicesShowcase";
+import InlineCTA from "./components/scrollytelling/InlineCTA";
+import InstagramReels from "./components/scrollytelling/InstagramReels";
+import TrustMarquee from "./components/scrollytelling/TrustMarquee";
+import ExpertiseGrid from "./components/scrollytelling/ExpertiseGrid";
+import ProcessSection from "./components/scrollytelling/ProcessSection";
+import StatsCounter from "./components/scrollytelling/StatsCounter";
+import TestimonialsMarquee from "./components/scrollytelling/TestimonialsMarquee";
+import FullScreenCTA from "./components/scrollytelling/FullScreenCTA";
 
 export default function HomePage() {
   return (
@@ -41,49 +34,19 @@ export default function HomePage() {
 
         <HeroSection />
 
-        <SnowRemovalFocusSection />
-        <SnowCtaStrip />
-
-        <SeasonalServicesSection />
-
-        <StatsSection />
-
-        <PrimaryServicesSection />
-        <SnowCtaStrip />
-
-        <CommonProblemsSection />
-
-        <MajorServicesSection />
-        <SnowCtaStrip />
-
-        <LocationFinderSection />
-
-        <AboutSection />
-
-        <WhyChooseUsSection />
-        <SnowCtaStrip />
-
-        <ReviewsSection />
-
-        <InstagramFeedSection />
-
-        <ExpertServiceSection />
-
-        <ResourcesSection />
-
-        <EstimateBookingSection />
-        <SnowCtaStrip />
-
-        <ServiceAreasSection />
-
-        <HighlightsSection />
-
-        <DetailedServicesSection />
-
-        <ContactSection />
-
-        <FaqSection />
-        <SnowCtaStrip variant="dark" message="Ready for same-day snow removal?" />
+        <ScrollytellingWrapper>
+          <BrandStatementSection />
+          <ServicesShowcase />
+          <InlineCTA />
+          <InstagramReels />
+          <TrustMarquee />
+          <ExpertiseGrid />
+          <InlineCTA />
+          <ProcessSection />
+          <StatsCounter />
+          <TestimonialsMarquee />
+          <FullScreenCTA />
+        </ScrollytellingWrapper>
       </Box>
 
       <SiteFooter />
