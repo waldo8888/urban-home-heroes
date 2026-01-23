@@ -69,7 +69,7 @@ export default function ServicesShowcase() {
                         ))}
                         {/* Mobile 'View All' CTA */}
                         <Box sx={{ p: 4, bgcolor: "#0e2740", borderRadius: 4, color: "#fff", textAlign: "center" }}>
-                            <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>And much more.</Typography>
+                            <Typography variant="h5" sx={{ fontWeight: 800, mb: 1, color: "#ffffff" }}>And much more.</Typography>
                             <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.7)", mb: 3 }}>
                                 Plumbing, Electrical, Drywall and more.
                             </Typography>
