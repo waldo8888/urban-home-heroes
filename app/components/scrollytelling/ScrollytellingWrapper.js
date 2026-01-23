@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 import { Box } from "@mui/material";
 
 export default function ScrollytellingWrapper({ children }) {
