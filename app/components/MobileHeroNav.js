@@ -9,7 +9,7 @@ export default function MobileHeroNav() {
         display: { xs: "block", md: "none" },
         position: "sticky",
         top: 0,
-        zIndex: 1200,
+        zIndex: 1000,
         bgcolor: "rgba(7, 12, 20, 0.95)",
         backdropFilter: "blur(14px)",
         borderBottom: "1px solid rgba(255, 255, 255, 0.1)",

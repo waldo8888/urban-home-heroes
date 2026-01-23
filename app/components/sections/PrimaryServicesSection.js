@@ -4,14 +4,14 @@ import { useEffect } from "react";
 import {
   Box,
   Button,
-  Card,
   Container,
   Grid,
   Stack,
   Typography,
   useTheme
 } from "@mui/material";
-import { eyebrowStyle, headingStyle, sectionBodyStyle, sectionDivider } from "../../lib/sectionStyles";
+import { motion } from "framer-motion";
+import GlassCard from "../ui/GlassCard";
 
 const primaryServices = [
   {
@@ -48,193 +48,174 @@ const primaryServices = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
 
-
-const sectionSpacing = { py: { xs: 8, md: 14 } };
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
 
 export default function PrimaryServicesSection() {
   const theme = useTheme();
-  
-  // Ensure section is visible on mobile
-  useEffect(() => {
-    const section = document.getElementById("services");
-    if (section) {
-      // Check if mobile
-      const isMobile = window.innerWidth <= 900;
-      
-      if (isMobile) {
-        // Force visibility on mobile after a short delay
-        const timer = setTimeout(() => {
-          section.classList.add("is-visible");
-          // Also ensure stagger children are visible
-          const staggerItems = section.querySelectorAll(".stagger > *");
-          staggerItems.forEach((item) => {
-            item.style.opacity = "1";
-            item.style.transform = "translateY(0)";
-          });
-        }, 100);
-        
-        return () => clearTimeout(timer);
-      }
-    }
-  }, []);
-  
+
   return (
     <Box
       component="section"
       id="services"
-      className="reveal"
-      sx={{ 
-        ...sectionSpacing, 
-        bgcolor: "#ffffff",
-        minHeight: { xs: "auto", md: "auto" },
+      sx={{
+        py: { xs: 8, md: 14 },
         position: "relative",
         zIndex: 1
       }}
     >
-      <Container maxWidth="lg">
-        <Stack spacing={3} textAlign="center" mb={8} alignItems="center">
-          <Box
-            component="img"
-            src="/urban-home-hero-logo.jpg"
-            alt="Urban Home Heroes logo"
+      <Container maxWidth="xl">
+        <Stack spacing={3} textAlign="center" mb={10} alignItems="center">
+          <Typography
+            variant="overline"
             sx={{
-              width: { xs: 64, md: 80 },
-              height: { xs: 64, md: 80 },
-              bgcolor: "#ffffff",
-              p: 1,
-              borderRadius: 2,
-              boxShadow: theme.customShadows.medium,
-              border: "2px solid rgba(240, 122, 43, 0.1)"
+              color: "primary.main",
+              fontWeight: 700,
+              letterSpacing: "0.2em"
             }}
-          />
-          <Typography variant="overline" sx={eyebrowStyle}>
+          >
             WHAT WE DO
           </Typography>
-          <Typography variant="h2" sx={headingStyle}>
+          <Typography
+            variant="h2"
+            sx={{
+              color: "secondary.main",
+              fontSize: { xs: "2.5rem", md: "3.5rem" },
+              fontWeight: 700
+            }}
+          >
             Our Services
           </Typography>
-          <Box sx={sectionDivider} />
-          <Typography variant="body1" sx={sectionBodyStyle}>
+          <Box
+            sx={{
+              width: 60,
+              height: 4,
+              borderRadius: 2,
+              background: "linear-gradient(90deg, #f07a2b, #0e2740)"
+            }}
+          />
+          <Typography
+            variant="body1"
+            sx={{
+              color: "text.secondary",
+              maxWidth: 600,
+              fontSize: "1.1rem"
+            }}
+          >
             Reliable home services from a licensed contractor team for every season.
           </Typography>
         </Stack>
-        <Grid container spacing={3} className="stagger" mb={4}>
+
+        <Grid
+          container
+          spacing={3}
+          component={motion.div}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
           {primaryServices.map((service, index) => (
-            <Grid item xs={12} sm={6} md={3} key={service.title} style={{ "--i": index }}>
-                                                <Card
-                                                  sx={{
-                                                    height: "100%",
-                                                    p: 3,
-                                                    border: "1px solid rgba(15, 38, 68, 0.06)",
-                                                    background: "rgba(255, 255, 255, 0.8)",
-                                                    backdropFilter: "blur(10px)",
-                                                    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                                                    boxShadow: theme.customShadows.soft,
-                                                    "&:hover": {
-                                                      transform: "translateY(-8px) scale(1.02)",
-                                                      boxShadow: theme.customShadows.medium,
-                                                      borderColor: "rgba(240, 122, 43, 0.2)"
-                                                    }
-                                                  }}
-                                                >                <Stack spacing={1.5}>
-                  <Box
+            <Grid item xs={12} sm={6} md={3} key={service.title}>
+              <GlassCard
+                component={motion.div}
+                variants={itemVariants}
+                whileHover={{
+                  y: -10,
+                  boxShadow: "0 12px 40px rgba(14, 39, 64, 0.1)",
+                  borderColor: "rgba(14, 39, 64, 0.2)"
+                }}
+                sx={{
+                  height: "100%",
+                  p: 4,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between"
+                }}
+              >
+                <Stack spacing={2}>
+                  <Typography
+                    variant="h1"
                     sx={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: "50%",
-                      bgcolor: "#fff1e6",
-                      color: "#f07a2b",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontWeight: 700
+                      fontSize: "3rem",
+                      fontWeight: 800,
+                      color: "rgba(14, 39, 64, 0.05)",
+                      lineHeight: 1,
+                      position: "absolute",
+                      top: 20,
+                      right: 20,
+                      pointerEvents: "none"
                     }}
                   >
                     {String(index + 1).padStart(2, "0")}
+                  </Typography>
+                  <Box
+                    sx={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: "14px",
+                      background: "linear-gradient(135deg, rgba(240, 122, 43, 0.15), rgba(14, 39, 64, 0.05))",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      border: "1px solid rgba(14, 39, 64, 0.05)",
+                      mb: 2
+                    }}
+                  >
+                    <Typography variant="h6" color="primary" fontWeight={700}>
+                      {service.title.charAt(0)}
+                    </Typography>
                   </Box>
-                  <Typography variant="h6" sx={{ fontWeight: 600, color: "#0e2740" }}>
+                  <Typography variant="h6" sx={{ fontWeight: 700, color: "secondary.main" }}>
                     {service.title}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "#6a6f75" }}>
+                  <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.6 }}>
                     {service.description}
                   </Typography>
                 </Stack>
-              </Card>
+              </GlassCard>
             </Grid>
           ))}
         </Grid>
-        <Stack direction={{ xs: "column", sm: "row" }} spacing={2.5} justifyContent="center" mt={8}>
-          <Button
-            variant="outlined"
-            href="/services"
-            className="btn-modern"
-            sx={{
-              borderColor: "#f07a2b",
-              borderWidth: 2,
-              color: "#f07a2b",
-              px: 5,
-              py: 1.75,
-              fontWeight: 700,
-              fontSize: "1rem",
-              borderRadius: 2,
-              position: "relative",
-              overflow: "hidden",
-              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-              "&:hover": {
-                borderColor: "#d9651f",
-                borderWidth: 2,
-                bgcolor: "rgba(240, 122, 43, 0.08)",
-                transform: "translateY(-3px)",
-                boxShadow: theme.customShadows.buttonPrimaryHover
-              }
-            }}
-          >
-            View All Services
-          </Button>
+
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={3} justifyContent="center" mt={8}>
           <Button
             variant="contained"
+            color="primary"
+            size="large"
             href="#estimate"
-            className="btn-modern"
-            sx={{
-              bgcolor: "#f07a2b",
-              color: "#ffffff",
-              px: 5,
-              py: 1.75,
-              fontWeight: 700,
-              fontSize: "1rem",
-              borderRadius: 2,
-              boxShadow: theme.customShadows.buttonPrimary,
-              position: "relative",
-              overflow: "hidden",
-              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-              "&:hover": {
-                bgcolor: "#d9651f",
-                transform: "translateY(-3px) scale(1.02)",
-                boxShadow: theme.customShadows.buttonPrimaryHover
-              },
-              "&::before": {
-                content: '""',
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                width: 0,
-                height: 0,
-                borderRadius: "50%",
-                background: "rgba(255, 255, 255, 0.2)",
-                transform: "translate(-50%, -50%)",
-                transition: "width 0.6s, height 0.6s"
-              },
-              "&:hover::before": {
-                width: 400,
-                height: 400
-              }
-            }}
+            component={motion.button}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            sx={{ px: 5, py: 1.5, fontSize: "1rem", color: "#fff" }}
           >
             Book Service
+          </Button>
+          <Button
+            variant="outlined"
+            size="large"
+            href="/services"
+            component={motion.button}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            sx={{ px: 5, py: 1.5, fontSize: "1rem", color: "secondary.main", borderColor: "rgba(14, 39, 64, 0.3)" }}
+          >
+            View All Services
           </Button>
         </Stack>
       </Container>
     </Box>
-  )
+  );
 }

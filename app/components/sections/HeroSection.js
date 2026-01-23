@@ -1,350 +1,330 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   Box,
   Button,
   Container,
-  Grid,
   Stack,
   Typography,
-  useTheme
 } from "@mui/material";
+import ArrowForwardRounded from "@mui/icons-material/ArrowForwardRounded";
 import CheckCircleRounded from "@mui/icons-material/CheckCircleRounded";
 import StarRounded from "@mui/icons-material/StarRounded";
-
-const heroTrustTags = ["Insured contractor", "Same-day snow removal", "Transparent pricing"];
-
-const navItems = [
-  { label: "Services", href: "#services" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "About", href: "#about" },
-  { label: "Resources", href: "/resources" }
-];
+import PhoneRounded from "@mui/icons-material/PhoneRounded";
+import { motion } from "framer-motion";
 
 const heroVideos = [
   "/11297234-uhd_3840_2160_30fps.mp4",
   "/13261744_3840_2160_24fps.mp4",
-  "/6007424-uhd_4096_2160_24fps.mp4",
-  "/8964293-uhd_3840_2160_25fps.mp4"
+  "/6007424-uhd_4096_2160_24fps.mp4"
 ];
 
+const variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 }
+};
+
 export default function HeroSection() {
-  const theme = useTheme();
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const videoRef = useRef(null);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleVideoEnd = () => {
-      // Rotate to next video when current one ends
-      setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % heroVideos.length);
-    };
-
-    const playVideo = async () => {
-      try {
-        video.muted = true;
-        await video.play();
-      } catch (error) {
-        // Autoplay might be blocked, try again after a short delay
-        setTimeout(() => {
-          video.play().catch(() => {
-            // If still blocked, video will play on user interaction
-          });
-        }, 100);
-      }
-    };
-
-    const handleCanPlay = () => {
-      playVideo();
-    };
-
-    const handleLoadedData = () => {
-      playVideo();
-    };
-
-    video.addEventListener("ended", handleVideoEnd);
-    video.addEventListener("canplay", handleCanPlay);
-    video.addEventListener("loadeddata", handleLoadedData);
-    
-    // Load the current video
-    video.load();
-    
-    // Try to play immediately
-    playVideo();
-
-    return () => {
-      video.removeEventListener("ended", handleVideoEnd);
-      video.removeEventListener("canplay", handleCanPlay);
-      video.removeEventListener("loadeddata", handleLoadedData);
-    };
-  }, [currentVideoIndex]);
+    const interval = setInterval(() => {
+      setCurrentVideoIndex((prev) => (prev + 1) % heroVideos.length);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Box
       component="section"
-      className="reveal"
       sx={{
         position: "relative",
-        minHeight: "100vh",
+        minHeight: { xs: "100svh", md: "100vh" }, // svh for mobile viewport
         display: "flex",
         alignItems: "center",
-        width: "100%",
-        overflow: "hidden"
+        justifyContent: "center",
+        overflow: "hidden",
+        pb: { xs: 10, md: 0 } // Extra padding for mobile CTA bar
       }}
     >
+      {/* Background Video - Plays on all devices */}
       <Box
-        sx={{
-          position: "absolute",
-          top: { xs: 10, md: 14 },
-          left: { xs: 12, md: 24 },
-          right: { xs: 12, md: 24 },
-          zIndex: 3,
-          display: "flex",
-          justifyContent: "center"
-        }}
-      >
-        <Box
-          sx={{
-            px: { xs: 2.5, md: 3 },
-            py: 0.75,
-            borderRadius: "999px",
-            bgcolor: "rgba(240, 122, 43, 0.95)",
-            color: "#ffffff",
-            fontWeight: 700,
-            fontSize: { xs: "0.78rem", md: "0.85rem" },
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            boxShadow: "0 8px 20px rgba(240, 122, 43, 0.35)"
-          }}
-        >
-          Snow Removal & Plowing Services GTA
-        </Box>
-      </Box>
-      {/* Background Video - Rotates through all 3 videos */}
-      <Box
-        component="video"
-        ref={videoRef}
-        autoPlay
-        muted
-        playsInline
-        loop={false}
-        preload="auto"
-        key={currentVideoIndex}
         sx={{
           position: "absolute",
           top: 0,
           left: 0,
           width: "100%",
           height: "100%",
-          objectFit: "cover",
           zIndex: 0,
-          transition: "opacity 0.5s ease-in-out"
+          overflow: "hidden"
         }}
       >
-        <source
+        <Box
+          component="video"
+          key={heroVideos[currentVideoIndex]}
           src={heroVideos[currentVideoIndex]}
-          type="video/mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          sx={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+        {/* Dark Overlay */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "linear-gradient(180deg, rgba(14, 39, 64, 0.85) 0%, rgba(14, 39, 64, 0.75) 50%, rgba(14, 39, 64, 0.9) 100%)",
+            zIndex: 1
+          }}
         />
       </Box>
-      
-      {/* Gradient Overlay */}
-      <Box
-        sx={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(110deg, rgba(14, 39, 64, 0.9) 0%, rgba(14, 39, 64, 0.75) 45%, rgba(14, 39, 64, 0.2) 100%)",
-          zIndex: 1
-        }}
-      />
-      {/* Desktop Navigation Bar - Only visible on desktop */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: { xs: 56, md: 64 },
-          left: { xs: 16, md: 24 },
-          right: { xs: 16, md: 24 },
-          zIndex: 2,
-          display: { xs: "none", md: "block" }
-        }}
-      >
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
+
+      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2, px: { xs: 2, sm: 3 } }}>
+        <Stack
+          spacing={{ xs: 3, md: 4 }}
+          alignItems="center"
+          textAlign="center"
+          component={motion.div}
+          initial="hidden"
+          animate="visible"
+          variants={variants}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Logo */}
+          <Box
+            component={motion.img}
+            src="/urban-home-hero-logo.jpg"
+            alt="Urban Home Heroes"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
             sx={{
+              width: { xs: 80, sm: 100, md: 130 },
+              height: { xs: 80, sm: 100, md: 130 },
+              borderRadius: 3,
+              boxShadow: "0 16px 48px rgba(0, 0, 0, 0.4)",
+              border: "3px solid rgba(255,255,255,0.2)"
+            }}
+          />
+
+          {/* Eyebrow Badge */}
+          <Box
+            component={motion.div}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 1,
               px: { xs: 2, md: 3 },
-              py: { xs: 1, md: 1.25 },
-              borderRadius: "999px",
-              background: "rgba(7, 12, 20, 0.65)",
-              border: "1px solid rgba(255, 255, 255, 0.15)",
-              backdropFilter: "blur(14px)"
+              py: 1,
+              borderRadius: "30px",
+              background: "rgba(240, 122, 43, 0.2)",
+              border: "1px solid rgba(240, 122, 43, 0.4)",
+              color: "#f07a2b",
+              fontSize: { xs: "0.75rem", md: "0.85rem" },
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.1em"
             }}
           >
-            <Stack direction="row" spacing={1.5} alignItems="center">
-              <Box
-                component="img"
-                src="/urban-home-hero-logo.jpg"
-                alt="Urban Home Heroes logo"
-                sx={{
-                  width: 34,
-                  height: 34,
-                  bgcolor: "#ffffff",
-                  p: 0.4,
-                  borderRadius: 2
-                }}
-              />
-              <Typography sx={{ color: "#ffffff", fontWeight: 700, fontSize: "0.95rem" }}>
-                Urban Home Heroes
-              </Typography>
-            </Stack>
-            <Stack
-              direction="row"
-              spacing={2}
-              sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
-            >
-              {navItems.map((item) => (
-                <Button
-                  key={item.label}
-                  href={item.href}
-                  sx={{
-                    color: "rgba(255,255,255,0.82)",
-                    fontWeight: 500,
-                    px: 1.5,
-                    "&:hover": { color: "#ffffff", bgcolor: "transparent" }
-                  }}
-                >
-                  {item.label}
-                </Button>
-              ))}
-            </Stack>
-            <Button
-              variant="outlined"
-              href="#estimate"
+            <StarRounded sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }} />
+            GTA's #1 Snow Removal
+          </Box>
+
+          {/* Main Headline - Optimized for mobile */}
+          <Typography
+            variant="h1"
+            component={motion.h1}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            sx={{
+              fontSize: { xs: "2rem", sm: "2.8rem", md: "4rem", lg: "5rem" },
+              fontWeight: 800,
+              lineHeight: { xs: 1.15, md: 1.05 },
+              color: "#ffffff",
+              textShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
+              maxWidth: "900px",
+              px: { xs: 1, md: 0 }
+            }}
+          >
+            Snow Removal in{" "}
+            <Box
+              component="span"
               sx={{
-                borderColor: "rgba(255, 255, 255, 0.7)",
-                color: "#ffffff",
-                fontWeight: 600,
-                px: 2.5,
-                py: 0.75,
-                borderRadius: "999px",
-                "&:hover": { borderColor: "#ffffff", bgcolor: "rgba(255,255,255,0.12)" }
+                color: "#f07a2b",
+                display: { xs: "inline", md: "block" }
               }}
             >
-              Request Same-Day Service
+              Woodbridge & Vaughan
+            </Box>
+          </Typography>
+
+          {/* Subheadline */}
+          <Typography
+            variant="h5"
+            component={motion.p}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            sx={{
+              color: "rgba(255, 255, 255, 0.85)",
+              maxWidth: "700px",
+              fontWeight: 500,
+              lineHeight: 1.5,
+              fontSize: { xs: "1rem", sm: "1.1rem", md: "1.4rem" },
+              px: { xs: 1, md: 0 }
+            }}
+          >
+            Professional Driveway Clearing — Fast, Reliable, Same-Day Service
+          </Typography>
+
+          {/* Trust Badges - Horizontal scroll on mobile */}
+          <Stack
+            direction="row"
+            spacing={1.5}
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            sx={{
+              flexWrap: { xs: "nowrap", sm: "wrap" },
+              justifyContent: "center",
+              overflowX: { xs: "auto", sm: "visible" },
+              width: "100%",
+              pb: { xs: 1, sm: 0 },
+              px: { xs: 1, sm: 0 },
+              "&::-webkit-scrollbar": { display: "none" },
+              scrollbarWidth: "none"
+            }}
+          >
+            {["Licensed & Insured", "Same-Day Response", "500+ Reviews"].map((item) => (
+              <Box
+                key={item}
+                sx={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 0.8,
+                  px: { xs: 1.5, md: 2 },
+                  py: { xs: 0.6, md: 0.8 },
+                  borderRadius: "20px",
+                  background: "rgba(255, 255, 255, 0.1)",
+                  border: "1px solid rgba(255, 255, 255, 0.15)",
+                  color: "#ffffff",
+                  fontSize: { xs: "0.75rem", md: "0.9rem" },
+                  fontWeight: 600,
+                  whiteSpace: "nowrap",
+                  flexShrink: 0,
+                  minHeight: 44 // Touch-friendly
+                }}
+              >
+                <CheckCircleRounded sx={{ fontSize: { xs: "0.9rem", md: "1rem" }, color: "#f07a2b" }} />
+                {item}
+              </Box>
+            ))}
+          </Stack>
+
+          {/* CTA Buttons - Touch-friendly sizing */}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={2}
+            component={motion.div}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            sx={{ pt: 1, width: { xs: "100%", sm: "auto" }, px: { xs: 2, sm: 0 } }}
+          >
+            <Button
+              component={motion.button}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              variant="contained"
+              size="large"
+              href="#estimate"
+              endIcon={<ArrowForwardRounded />}
+              sx={{
+                bgcolor: "#f07a2b",
+                color: "#ffffff",
+                fontSize: { xs: "1rem", md: "1.1rem" },
+                py: { xs: 1.8, md: 2 },
+                px: { xs: 4, md: 5 },
+                fontWeight: 700,
+                borderRadius: 2,
+                minHeight: 56, // Touch-friendly
+                boxShadow: "0 8px 24px rgba(240, 122, 43, 0.4)",
+                "&:hover": {
+                  bgcolor: "#d9651f",
+                  boxShadow: "0 12px 32px rgba(240, 122, 43, 0.5)"
+                }
+              }}
+            >
+              Get Instant Quote
+            </Button>
+            <Button
+              component={motion.button}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              variant="outlined"
+              size="large"
+              href="tel:4168229741"
+              startIcon={<PhoneRounded />}
+              sx={{
+                borderColor: "rgba(255, 255, 255, 0.5)",
+                color: "#ffffff",
+                fontSize: { xs: "1rem", md: "1.1rem" },
+                py: { xs: 1.8, md: 2 },
+                px: { xs: 4, md: 5 },
+                fontWeight: 700,
+                borderRadius: 2,
+                borderWidth: 2,
+                minHeight: 56, // Touch-friendly
+                "&:hover": {
+                  borderColor: "#ffffff",
+                  bgcolor: "rgba(255, 255, 255, 0.1)",
+                  borderWidth: 2
+                }
+              }}
+            >
+              (416) 822-9741
             </Button>
           </Stack>
-      </Box>
 
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1, height: "100%", minHeight: "100vh", display: "flex", alignItems: "center" }}>
-        <Grid
-          container
-          spacing={{ xs: 4, md: 6 }}
-          alignItems="center"
-          sx={{ width: "100%", pt: { xs: 10, md: 12 }, pb: { xs: 6, md: 10 } }}
-        >
-          <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                color: "#ffffff",
-                maxWidth: 520
-              }}
-            >
-              <Stack spacing={2}>
-                <Typography
-                  variant="h1"
-                  sx={{
-                    fontSize: { xs: "3rem", md: "4rem" },
-                    fontWeight: 700,
-                    mb: 1,
-                    color: "#ffffff",
-                    lineHeight: 1.1,
-                    letterSpacing: "-0.03em"
-                  }}
-                >
-                  Snow Removal in Woodbridge & Vaughan — Professional Driveway Clearing
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontSize: { xs: "1.05rem", md: "1.2rem" },
-                    color: "rgba(255, 255, 255, 0.9)",
-                    lineHeight: 1.7
-                  }}
-                >
-                  Snow plowing services for residential and commercial properties in the GTA with same-day response and clear pricing.
-                </Typography>
-                <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.75)" }}>
-                  Serving snow removal clients in Woodbridge, Vaughan, Brampton, Etobicoke, North York and Mississauga.
-                </Typography>
-                <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
-                  <Button
-                    variant="contained"
-                    href="#estimate"
-                    sx={{
-                      bgcolor: "#ffffff",
-                      color: "#0e2740",
-                      px: 4,
-                      py: 1.6,
-                      fontWeight: 700,
-                      fontSize: "1rem",
-                      boxShadow: theme.customShadows.buttonGeneric,
-                      "&:hover": {
-                        bgcolor: "#f8f8f8",
-                        transform: "translateY(-2px)",
-                        boxShadow: theme.customShadows.buttonGenericHover
-                      }
-                    }}
-                  >
-                    Get Snow Removal Quote
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    href="tel:4168229741"
-                    sx={{
-                      borderColor: "rgba(255, 255, 255, 0.5)",
-                      borderWidth: 2,
-                      color: "#ffffff",
-                      px: 4,
-                      py: 1.6,
-                      fontWeight: 700,
-                      "&:hover": {
-                        borderColor: "#ffffff",
-                        bgcolor: "rgba(255,255,255,0.12)",
-                        transform: "translateY(-2px)"
-                      }
-                    }}
-                  >
-                    Call Now
-                  </Button>
-                </Stack>
-                <Stack direction="row" spacing={2} flexWrap="wrap" sx={{ gap: 1.5, pt: 1 }}>
-                  {heroTrustTags.map((tag) => (
-                    <Stack key={tag} direction="row" spacing={1} alignItems="center">
-                      <CheckCircleRounded sx={{ color: "#f07a2b", fontSize: "1rem" }} />
-                      <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.85)", fontWeight: 600 }}>
-                        {tag}
-                      </Typography>
-                    </Stack>
-                  ))}
-                </Stack>
-                <Stack direction="row" spacing={1} alignItems="center" sx={{ pt: 1 }}>
-                  <Stack direction="row" spacing={0.3}>
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <StarRounded key={index} sx={{ color: "#f7a24d", fontSize: "1.1rem" }} />
-                    ))}
-                  </Stack>
-                  <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.85)", fontWeight: 600 }}>
-                    “Fast, reliable snow removal — arrived before sunrise!” — Client
-                  </Typography>
-                </Stack>
-              </Stack>
+          {/* Scroll Indicator - Hidden on mobile */}
+          <Box
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, y: [0, 10, 0] }}
+            transition={{ delay: 1.2, duration: 1.5, repeat: Infinity }}
+            sx={{
+              pt: 4,
+              color: "rgba(255,255,255,0.5)",
+              display: { xs: "none", md: "block" }
+            }}
+          >
+            <Typography variant="caption" sx={{ letterSpacing: "0.1em", fontWeight: 600 }}>
+              SCROLL TO EXPLORE
+            </Typography>
+            <Box sx={{ mt: 1, mx: "auto", width: 24, height: 40, border: "2px solid rgba(255,255,255,0.3)", borderRadius: 12, position: "relative" }}>
+              <Box
+                component={motion.div}
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                sx={{ width: 4, height: 8, bgcolor: "rgba(255,255,255,0.5)", borderRadius: 4, position: "absolute", top: 6, left: "50%", transform: "translateX(-50%)" }}
+              />
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Stack>
       </Container>
     </Box>
   );

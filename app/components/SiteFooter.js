@@ -14,6 +14,7 @@ import FacebookRounded from "@mui/icons-material/FacebookRounded";
 import Instagram from "@mui/icons-material/Instagram";
 import PlaceRounded from "@mui/icons-material/PlaceRounded";
 import YouTube from "@mui/icons-material/YouTube";
+import { motion } from "framer-motion";
 
 const serviceLinks = [
   { label: "Winter Services", href: "/winter-services" },
@@ -34,38 +35,16 @@ export default function SiteFooter() {
     <Box
       component="footer"
       sx={{
-        background: "linear-gradient(180deg, #0e2740 0%, #162b3f 100%)",
+        background: "#0e2740", // Brand Dark Blue
         color: "#ffffff",
-        py: 6,
+        py: 8,
         position: "relative",
         overflow: "hidden",
-        "&::before": {
-          content: '""',
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(240, 122, 43, 0.3), transparent)"
-        },
-        "&::after": {
-          content: '"HOME REPAIRS"',
-          position: "absolute",
-          bottom: "-10%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          fontSize: { xs: "8rem", md: "12rem" },
-          fontWeight: 900,
-          color: "rgba(255, 255, 255, 0.03)",
-          letterSpacing: "0.1em",
-          whiteSpace: "nowrap",
-          pointerEvents: "none",
-          zIndex: 0
-        }
+        borderTop: "4px solid #f07a2b", // Brand Orange accent
       }}
     >
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        <Grid container spacing={4}>
+      <Container maxWidth="xl" sx={{ position: "relative", zIndex: 1 }}>
+        <Grid container spacing={6}>
           <Grid item xs={12} md={4}>
             <Stack direction="row" spacing={2} alignItems="center" mb={3}>
               <Box
@@ -75,50 +54,39 @@ export default function SiteFooter() {
                 sx={{
                   width: 64,
                   height: 64,
-                  bgcolor: "#ffffff",
-                  p: 0.8,
-                  borderRadius: 2,
-                  boxShadow: "0 8px 24px rgba(18, 38, 62, 0.3)",
-                  border: "2px solid rgba(240, 122, 43, 0.2)",
-                  flexShrink: 0
+                  borderRadius: "12px",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
                 }}
               />
               <Box>
-                <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.5, fontSize: "1.25rem" }}>
-                  Urban Home Heroes
-                </Typography>
-                <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.7)", fontSize: "0.75rem" }}>
-                  Your Local Fix-It Hero
+                <Typography variant="h5" sx={{ fontWeight: 800, mb: 0.5, lineHeight: 1 }}>
+                  Urban<br />Home Heroes
                 </Typography>
               </Box>
             </Stack>
-            <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.7)", mb: 1 }}>
-              Service Areas: Vaughan, Woodbridge, Kleinburg, North York, Etobicoke, North Etobicoke, Concord, Brampton, Mississauga, GTA
+            <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.7)", mb: 3, maxWidth: "300px", lineHeight: 1.6 }}>
+              Local, reliable, and verified experts for all your home repair needs. Serving the Greater Toronto Area.
             </Typography>
-            <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.6)" }}>
-              Estimates provided after site inspection.
-            </Typography>
-            <Stack direction="row" spacing={1} mt={3}>
+
+            <Stack direction="row" spacing={1.5}>
               {[
-                { icon: PlaceRounded, href: "/#contact", label: "Map" },
-                { icon: FacebookRounded, href: "#", label: "Facebook" },
-                { icon: YouTube, href: "#", label: "YouTube" },
-                { icon: Instagram, href: "https://instagram.com/urbanhomeheroes", label: "Instagram" }
+                { icon: FacebookRounded, href: "#", label: "Facebook", color: "#1877F2" },
+                { icon: Instagram, href: "https://instagram.com/urbanhomeheroes", label: "Instagram", color: "#E4405F" },
+                { icon: YouTube, href: "#", label: "YouTube", color: "#FF0000" },
+                { icon: PlaceRounded, href: "/#contact", label: "Map", color: "#34A853" }
               ].map((social) => (
                 <IconButton
                   key={social.label}
-                  component="a"
+                  component={motion.a}
+                  whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.1)" }}
+                  whileTap={{ scale: 0.95 }}
                   href={social.href}
                   target={social.href.startsWith("http") ? "_blank" : undefined}
                   rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   sx={{
-                    color: "rgba(255,255,255,0.7)",
-                    transition: "all 0.2s ease",
-                    "&:hover": {
-                      color: "#ffffff",
-                      bgcolor: "rgba(255,255,255,0.1)",
-                      transform: "translateY(-2px)"
-                    }
+                    color: "rgba(255,255,255,0.8)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    "&:hover": { color: social.color, borderColor: social.color }
                   }}
                   aria-label={social.label}
                 >
@@ -127,83 +95,71 @@ export default function SiteFooter() {
               ))}
             </Stack>
           </Grid>
+
           <Grid item xs={6} md={2}>
-            <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 2 }}>
+            <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 3, color: "#f07a2b" }}>
               Company
             </Typography>
-            <Stack spacing={1}>
-              <Button
-                component="a"
-                href="/#why-us"
-                sx={{ color: "rgba(255,255,255,0.7)", justifyContent: "flex-start", px: 0 }}
-              >
-                Why Us
-              </Button>
-              <Button
-                component="a"
-                href="/#about"
-                sx={{ color: "rgba(255,255,255,0.7)", justifyContent: "flex-start", px: 0 }}
-              >
-                About Us
-              </Button>
-              <Button
-                component="a"
-                href="/#contact"
-                sx={{ color: "rgba(255,255,255,0.7)", justifyContent: "flex-start", px: 0 }}
-              >
-                Careers
-              </Button>
+            <Stack spacing={1.5}>
+              {["Why Us", "About Us", "Careers", "Contact"].map((item) => (
+                <Button
+                  key={item}
+                  component={motion.a}
+                  href={`/#${item.toLowerCase().replace(" ", "-")}`}
+                  sx={{
+                    color: "rgba(255,255,255,0.7)",
+                    justifyContent: "flex-start",
+                    px: 0,
+                    minWidth: 0,
+                    "&:hover": { color: "#ffffff", background: "none" }
+                  }}
+                >
+                  {item}
+                </Button>
+              ))}
             </Stack>
           </Grid>
+
           <Grid item xs={6} md={3}>
-            <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 2 }}>
+            <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 3, color: "#f07a2b" }}>
               Services
             </Typography>
-            <Stack spacing={1}>
-              {serviceLinks.map((link) => (
+            <Stack spacing={1.5}>
+              {serviceLinks.slice(0, 5).map((link) => (
                 <Button
                   key={link.label}
                   component="a"
                   href={link.href}
-                  sx={{ color: "rgba(255,255,255,0.7)", justifyContent: "flex-start", px: 0 }}
+                  sx={{
+                    color: "rgba(255,255,255,0.7)",
+                    justifyContent: "flex-start",
+                    px: 0,
+                    textAlign: "left",
+                    "&:hover": { color: "#ffffff", background: "none" }
+                  }}
                 >
                   {link.label}
                 </Button>
               ))}
             </Stack>
           </Grid>
+
           <Grid item xs={12} md={3}>
-            <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 2 }}>
-              Resources
+            <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 3, color: "#f07a2b" }}>
+              Legal
             </Typography>
-            <Stack spacing={1}>
-              {resourceLinks.map((link) => (
-                <Button
-                  key={link.label}
-                  component="a"
-                  href={link.href}
-                  sx={{ color: "rgba(255,255,255,0.7)", justifyContent: "flex-start", px: 0 }}
-                >
-                  {link.label}
-                </Button>
-              ))}
+            <Stack spacing={1.5}>
+              <Button sx={{ color: "rgba(255,255,255,0.7)", justifyContent: "flex-start", px: 0 }}>Privacy Policy</Button>
+              <Button sx={{ color: "rgba(255,255,255,0.7)", justifyContent: "flex-start", px: 0 }}>Terms of Service</Button>
             </Stack>
+
+            <Box sx={{ mt: 4, p: 2, borderRadius: 2, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+              <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.5)", display: "block" }}>
+                © 2026 Urban Home Heroes.
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
-        <Divider sx={{ my: 4, borderColor: "rgba(255,255,255,0.2)" }} />
-        <Stack
-          direction={{ xs: "column", sm: "row" }}
-          spacing={2}
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.6)" }}>
-            Copyright 2024 Urban Home Heroes. All rights reserved.
-          </Typography>
-          <Button component="a" href="#" sx={{ color: "rgba(255,255,255,0.7)", fontSize: "0.75rem" }}>
-            Privacy Policy
-          </Button>
-        </Stack>
       </Container>
     </Box>
   );

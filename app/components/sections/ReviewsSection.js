@@ -1,8 +1,9 @@
 "use client";
 
-import { Box, Card, Container, Grid, Stack, Typography } from "@mui/material";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import StarRounded from "@mui/icons-material/StarRounded";
-import { eyebrowStyle, headingStyle, sectionBodyStyle, sectionDivider } from "../../lib/sectionStyles";
+import { motion } from "framer-motion";
+import GlassCard from "../ui/GlassCard";
 
 const reviews = [
   {
@@ -22,89 +23,73 @@ const reviews = [
   }
 ];
 
-const sectionSpacing = { py: { xs: 8, md: 14 } };
-
 export default function ReviewsSection() {
   return (
     <Box
       component="section"
       id="reviews"
-      className="reveal"
-      sx={{ ...sectionSpacing, bgcolor: "#ffffff" }}
+      sx={{
+        py: { xs: 8, md: 14 },
+        position: "relative"
+      }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Stack spacing={2} textAlign="center" mb={8} alignItems="center">
-          <Typography variant="overline" sx={eyebrowStyle}>
+          <Typography variant="overline" sx={{ color: "primary.main", fontWeight: 700, letterSpacing: "0.2em" }}>
             CLIENT REVIEWS
           </Typography>
-          <Typography variant="h2" sx={headingStyle}>
+          <Typography variant="h2" sx={{ color: "secondary.main", fontWeight: 700 }}>
             What Our Clients Say
-          </Typography>
-          <Box sx={sectionDivider} />
-          <Typography variant="body1" sx={sectionBodyStyle}>
-            Real feedback from homeowners who trust Urban Home Heroes.
           </Typography>
         </Stack>
 
         <Grid container spacing={4}>
           {reviews.map((review, index) => (
             <Grid item xs={12} md={4} key={index}>
-              <Card
-                sx={{
-                  p: 4,
-                  height: "100%",
-                  borderRadius: 4,
-                  border: "1px solid rgba(15, 38, 68, 0.08)",
-                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    transform: "translateY(-4px)",
-                    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.12)"
-                  }
-                }}
+              <GlassCard
+                component={motion.div}
+                whileHover={{ y: -5 }}
+                sx={{ p: 4, height: "100%" }}
               >
-                <Stack spacing={2}>
-                  {/* Star Rating */}
+                <Stack spacing={3}>
                   <Stack direction="row" spacing={0.5}>
                     {Array.from({ length: review.rating }).map((_, i) => (
                       <StarRounded
                         key={i}
                         sx={{
-                          color: "#f7a24d",
-                          fontSize: "1.5rem"
+                          color: "#f07a2b", // Brand Orange
+                          fontSize: "1.5rem",
+                          filter: "drop-shadow(0 0 4px rgba(240, 122, 43, 0.4))"
                         }}
                       />
                     ))}
                   </Stack>
 
-                  {/* Review Text */}
                   <Typography
                     variant="body1"
                     sx={{
                       fontSize: "1.1rem",
-                      color: "#0e2740",
+                      color: "text.primary",
                       fontStyle: "italic",
-                      lineHeight: 1.7,
-                      fontWeight: 500
+                      lineHeight: 1.6
                     }}
                   >
                     "{review.text}"
                   </Typography>
 
-                  {/* Author */}
                   <Typography
                     variant="caption"
                     sx={{
-                      color: "#6a6f75",
-                      fontWeight: 600,
+                      color: "text.secondary",
+                      fontWeight: 700,
                       textTransform: "uppercase",
-                      letterSpacing: "0.05em"
+                      letterSpacing: "0.1em"
                     }}
                   >
                     — {review.author}
                   </Typography>
                 </Stack>
-              </Card>
+              </GlassCard>
             </Grid>
           ))}
         </Grid>

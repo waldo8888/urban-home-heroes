@@ -34,7 +34,7 @@ export default function ServiceDetailClient({ service, related }) {
             backgroundImage: `url(${service.image})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            pt: { xs: 12, md: 0 } // Add top padding on mobile to account for sticky header
+            pt: { xs: 12, md: 16 } // Add top padding to account for fixed header
           }}
         >
           <Box
@@ -57,7 +57,8 @@ export default function ServiceDetailClient({ service, related }) {
                       fontSize: { xs: "2.6rem", md: "3.6rem" },
                       fontWeight: 700,
                       lineHeight: 1.1,
-                      letterSpacing: "-0.03em"
+                      letterSpacing: "-0.03em",
+                      color: "#ffffff"
                     }}
                   >
                     {service.name}
@@ -438,7 +439,7 @@ export default function ServiceDetailClient({ service, related }) {
             >
               <Grid container spacing={4} alignItems="center">
                 <Grid item xs={12} md={7}>
-                  <Typography variant="h3" sx={{ fontWeight: 700, mb: 2 }}>
+                  <Typography variant="h3" sx={{ fontWeight: 700, mb: 2, color: "#f07a2b" }}>
                     Ready to schedule {service.shortName}?
                   </Typography>
                   <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.9)" }}>
