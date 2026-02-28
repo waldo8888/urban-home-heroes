@@ -10,10 +10,8 @@ import {
   Stack,
   Typography
 } from "@mui/material";
-import FacebookRounded from "@mui/icons-material/FacebookRounded";
 import Instagram from "@mui/icons-material/Instagram";
 import PlaceRounded from "@mui/icons-material/PlaceRounded";
-import YouTube from "@mui/icons-material/YouTube";
 import { motion } from "framer-motion";
 
 const serviceLinks = [
@@ -70,9 +68,7 @@ export default function SiteFooter() {
 
             <Stack direction="row" spacing={1.5}>
               {[
-                { icon: FacebookRounded, href: "#", label: "Facebook", color: "#1877F2" },
                 { icon: Instagram, href: "https://instagram.com/urbanhomeheroes", label: "Instagram", color: "#E4405F" },
-                { icon: YouTube, href: "#", label: "YouTube", color: "#FF0000" },
                 { icon: PlaceRounded, href: "/#contact", label: "Map", color: "#34A853" }
               ].map((social) => (
                 <IconButton

@@ -361,8 +361,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
           {/* Social Links */}
           <Stack direction="row" justifyContent="center" spacing={2} sx={{ pt: 2, borderTop: "1px solid rgba(255,255,255,0.1)" }}>
             {[
-              { label: "Instagram", href: "https://instagram.com/urbanhomeheroes" },
-              { label: "Facebook", href: "#" }
+              { label: "Instagram", href: "https://instagram.com/urbanhomeheroes" }
             ].map((social) => (
               <Button
                 key={social.label}
