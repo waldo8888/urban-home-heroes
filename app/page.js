@@ -26,6 +26,7 @@ export default function HomePage() {
       <SiteHeader hideOnMobile={true} />
       <Box component="main">
 
+
         <HeroSection />
 
         <ScrollytellingWrapper>

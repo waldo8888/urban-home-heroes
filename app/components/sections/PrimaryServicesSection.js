@@ -18,7 +18,10 @@ const primaryServices = [
     title: "Contractor Services",
     description: "Licensed contractor support for small jobs and repairs."
   },
-
+  {
+    title: "Snow Removal",
+    description: "Emergency snow removal near me and safe winter response."
+  },
   {
     title: "Fencing",
     description: "Fence repair and installation, storm damage and more."

@@ -71,7 +71,47 @@ export const services = [
       }
     ]
   },
-
+  {
+    slug: "snow-removal",
+    name: "Snow Removal",
+    shortName: "Snow Removal",
+    heroTitle: "Emergency Snow Removal for Driveways and Walkways",
+    heroSubtitle:
+      "Stay safe during winter storms with emergency snow removal near you. We respond fast and keep your property accessible.",
+    shortDescription: "Emergency snow removal and winter safety service.",
+    image: "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=1600&q=80",
+    keywords: [
+      "snow removal",
+      "emergency snow removal near me",
+      "emergency snow removal",
+      "winter maintenance",
+      "snow shoveling service"
+    ],
+    highlights: ["Fast response", "Seasonal plans", "Safe access cleared"],
+    included: [
+      "Driveway clearing",
+      "Sidewalk and walkway shoveling",
+      "Salt and ice melt application",
+      "Front steps and entryways",
+      "Post storm cleanup",
+      "Emergency call outs"
+    ],
+    idealFor: ["Homeowners", "Seniors and families", "Property managers"],
+    faqs: [
+      {
+        question: "Do you offer emergency snow removal?",
+        answer: "Yes, we provide emergency snow removal based on availability."
+      },
+      {
+        question: "What areas do you serve in winter?",
+        answer: "We cover Vaughan, Woodbridge, and the GTA for seasonal services."
+      },
+      {
+        question: "Do you provide seasonal plans?",
+        answer: "Yes, ask us about seasonal snow removal scheduling."
+      }
+    ]
+  },
   {
     slug: "fencing-installation",
     name: "Fencing",

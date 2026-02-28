@@ -17,9 +17,9 @@ import YouTube from "@mui/icons-material/YouTube";
 import { motion } from "framer-motion";
 
 const serviceLinks = [
-
+  { label: "Winter Services", href: "/winter-services" },
   { label: "Contractor Services", href: "/services/contractor-services" },
-
+  { label: "Snow Removal", href: "/services/snow-removal" },
   { label: "Fencing", href: "/services/fencing-installation" },
   { label: "Fence & Deck Repairs", href: "/services/fence-deck-repairs" }
 ];

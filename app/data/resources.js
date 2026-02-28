@@ -39,7 +39,7 @@ export const resourceGuides = [
         bullets: [
           "Check weather stripping on doors and windows.",
           "Inspect outdoor faucets for leaks and freeze risk.",
-          "Schedule exterior safety checks and gutter clearing."
+          "Schedule snow removal and exterior safety checks."
         ]
       },
       {
@@ -283,6 +283,6 @@ export const seasonalChecklist = [
   },
   {
     season: "Winter",
-    tasks: ["Monitor ice buildup", "Clear debris from walkways", "Inspect plumbing for freezing risks"]
+    tasks: ["Monitor ice buildup", "Clear snow from walkways", "Inspect plumbing for freezing risks"]
   }
 ];

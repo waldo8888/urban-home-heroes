@@ -16,7 +16,6 @@ import MenuRounded from "@mui/icons-material/MenuRounded";
 import CloseRounded from "@mui/icons-material/CloseRounded";
 import PhoneRounded from "@mui/icons-material/PhoneRounded";
 import CalendarMonthRounded from "@mui/icons-material/CalendarMonthRounded";
-
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
@@ -29,7 +28,6 @@ const navItems = [
 export default function SiteHeader({ hideOnMobile = false }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showBanner, setShowBanner] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +52,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
         sx={{
-          top: 0, // Banner removed
+          top: 0, // No banner height anymore
           zIndex: 1200, // Below banner
           background: isScrolled
             ? "rgba(14, 39, 64, 0.95)"
@@ -310,7 +308,6 @@ export default function SiteHeader({ hideOnMobile = false }) {
             </Typography>
             <Stack spacing={0.5}>
               {[
-
                 { label: "Contractor Services", href: "/services/contractor-services" },
                 { label: "Fencing", href: "/services/fencing-installation" }
               ].map((service) => (
@@ -387,13 +384,6 @@ export default function SiteHeader({ hideOnMobile = false }) {
         </Box>
       </Drawer>
 
-      {/* CSS for snowflake spin animation */}
-      <style jsx global>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
     </>
   );
 }

@@ -8,7 +8,7 @@ import GlassCard from "../ui/GlassCard";
 const reviews = [
   {
     rating: 5,
-    text: "Fast, reliable home repairs — outstanding quality and service!",
+    text: "Fast, reliable snow removal — arrived before sunrise!",
     author: "Client"
   },
   {

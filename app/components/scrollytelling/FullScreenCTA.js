@@ -103,7 +103,7 @@ export default function FullScreenCTA() {
                                     <TextField fullWidth label="Phone Number" variant="outlined" />
                                     <TextField fullWidth label="Service Needed" select SelectProps={{ native: true }} variant="outlined">
                                         <option value="">Select a service...</option>
-
+                                        <option value="snow">Snow Removal</option>
                                         <option value="reno">Renovations</option>
                                         <option value="repair">Handyman Repairs</option>
                                         <option value="fencing">Fencing</option>

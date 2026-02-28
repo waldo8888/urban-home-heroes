@@ -45,7 +45,12 @@ const allServices = [
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
     slug: "junk-removal"
   },
-
+  {
+    title: "Snow Removal",
+    description: "Emergency snow removal and winter safety service.",
+    image: "https://images.unsplash.com/photo-1452626038306-9aae5e071dd3?auto=format&fit=crop&w=800&q=80",
+    slug: "snow-removal"
+  }
 ];
 
 const sectionSpacing = { py: { xs: 8, md: 14 } };
