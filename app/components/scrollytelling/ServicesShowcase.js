@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { Box, Container, Stack, Typography, Card, CardContent, Button, useMediaQuery, useTheme } from "@mui/material";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ArrowForwardRounded from "@mui/icons-material/ArrowForwardRounded";
@@ -216,9 +217,6 @@ function ServiceCard({ service }) {
                 sx={{
                     height: "100%",
                     borderRadius: 4,
-                    backgroundImage: `url(${service.img})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
                     position: "relative",
                     overflow: "hidden",
                     display: "flex",
@@ -231,6 +229,13 @@ function ServiceCard({ service }) {
                     }
                 }}
             >
+                <Image
+                    src={service.img}
+                    alt={service.title}
+                    fill
+                    sizes="(max-width: 768px) 85vw, 400px"
+                    style={{ objectFit: "cover" }}
+                />
                 {/* Overlay for better text contrast if needed, though we use a glass card on top */}
                 <Box sx={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.4) 100%)" }} />
                 <Box sx={{ p: 4, background: "rgba(255,255,255,0.9)", backdropFilter: "blur(10px)", m: 2, borderRadius: 3, position: "relative", zIndex: 1 }}>

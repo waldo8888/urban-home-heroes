@@ -1,32 +1,32 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Box } from "@mui/material";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import MobileCtaBar from "./components/MobileCtaBar";
 import HeroSection from "./components/sections/HeroSection";
 
-
-// Scrollytelling Components
+// Scrollytelling Components - Priority Loading
 import ScrollytellingWrapper from "./components/scrollytelling/ScrollytellingWrapper";
 import BrandStatementSection from "./components/scrollytelling/BrandStatementSection";
 import ServicesShowcase from "./components/scrollytelling/ServicesShowcase";
-import InlineCTA from "./components/scrollytelling/InlineCTA";
-import InstagramReels from "./components/scrollytelling/InstagramReels";
-import TrustMarquee from "./components/scrollytelling/TrustMarquee";
-import ExpertiseGrid from "./components/scrollytelling/ExpertiseGrid";
-import ProcessSection from "./components/scrollytelling/ProcessSection";
-import StatsCounter from "./components/scrollytelling/StatsCounter";
-import TestimonialsMarquee from "./components/scrollytelling/TestimonialsMarquee";
-import FullScreenCTA from "./components/scrollytelling/FullScreenCTA";
+
+// Scrollytelling Components - Lazy Loaded for performance
+const InlineCTA = dynamic(() => import("./components/scrollytelling/InlineCTA"));
+const InstagramReels = dynamic(() => import("./components/scrollytelling/InstagramReels"));
+const TrustMarquee = dynamic(() => import("./components/scrollytelling/TrustMarquee"));
+const ExpertiseGrid = dynamic(() => import("./components/scrollytelling/ExpertiseGrid"));
+const ProcessSection = dynamic(() => import("./components/scrollytelling/ProcessSection"));
+const StatsCounter = dynamic(() => import("./components/scrollytelling/StatsCounter"));
+const TestimonialsMarquee = dynamic(() => import("./components/scrollytelling/TestimonialsMarquee"));
+const FullScreenCTA = dynamic(() => import("./components/scrollytelling/FullScreenCTA"));
 
 export default function HomePage() {
   return (
     <Box className="page" id="top" sx={{ bgcolor: "transparent" }}>
       <SiteHeader hideOnMobile={true} />
       <Box component="main">
-
-
         <HeroSection />
 
         <ScrollytellingWrapper>

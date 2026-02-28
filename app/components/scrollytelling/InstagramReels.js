@@ -136,6 +136,7 @@ export default function InstagramReels() {
                                 allowTransparency="true"
                                 allow="encrypted-media"
                                 title={reel.title}
+                                loading="lazy"
                             />
                         </Box>
                     ))}

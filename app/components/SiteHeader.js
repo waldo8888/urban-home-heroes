@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import {
   AppBar,
   Box,
@@ -103,11 +104,13 @@ export default function SiteHeader({ hideOnMobile = false }) {
                   border: "2px solid rgba(255,255,255,0.1)"
                 }}
               >
-                <Box
-                  component="img"
+                <Image
                   src="/urban-home-hero-logo.jpg"
                   alt="Urban Home Heroes - Local Contractor and Home Repair Vaughan"
-                  sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  width={48}
+                  height={48}
+                  style={{ objectFit: "cover" }}
+                  priority
                 />
               </Box>
 
@@ -229,11 +232,12 @@ export default function SiteHeader({ hideOnMobile = false }) {
           {/* Header with Close */}
           <Stack direction="row" justifyContent="space-between" alignItems="center" mb={3}>
             <Stack direction="row" spacing={2} alignItems="center">
-              <Box
-                component="img"
+              <Image
                 src="/urban-home-hero-logo.jpg"
                 alt="Urban Home Heroes - Local Contractor Vaughan"
-                sx={{ width: 44, height: 44, borderRadius: 2 }}
+                width={44}
+                height={44}
+                style={{ borderRadius: "8px" }}
               />
               <Typography variant="h6" sx={{ color: "#fff", fontWeight: 700 }}>
                 Menu
