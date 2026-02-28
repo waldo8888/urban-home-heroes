@@ -118,8 +118,8 @@ export default function SiteFooter() {
                 </Button>
               ))}
               <Divider sx={{ borderColor: "rgba(255,255,255,0.1)", my: 1 }} />
-              <Button sx={{ color: "rgba(255,255,255,0.5)", justifyContent: "flex-start", px: 0, fontSize: "0.75rem", minHeight: "32px" }}>Privacy Policy</Button>
-              <Button sx={{ color: "rgba(255,255,255,0.5)", justifyContent: "flex-start", px: 0, fontSize: "0.75rem", minHeight: "32px" }}>Terms of Service</Button>
+              <Button href="/privacy-policy" sx={{ color: "rgba(255,255,255,0.5)", justifyContent: "flex-start", px: 0, fontSize: "0.75rem", minHeight: "32px", "&:hover": { color: "#ffffff", background: "none" } }}>Privacy Policy</Button>
+              <Button href="/terms-of-service" sx={{ color: "rgba(255,255,255,0.5)", justifyContent: "flex-start", px: 0, fontSize: "0.75rem", minHeight: "32px", "&:hover": { color: "#ffffff", background: "none" } }}>Terms of Service</Button>
             </Stack>
           </Grid>
 
