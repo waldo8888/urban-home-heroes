@@ -20,6 +20,7 @@ export default function BrandStatementSection() {
     return (
         <Box
             component="section"
+            id="about"
             ref={containerRef}
             sx={{
                 py: { xs: 15, md: 30 },

@@ -56,6 +56,7 @@ export default function ExpertiseGrid() {
     return (
         <Box
             component="section"
+            id="why-us"
             sx={{
                 py: { xs: 10, md: 15 },
                 bgcolor: "#ffffff",

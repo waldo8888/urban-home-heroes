@@ -70,7 +70,8 @@ export default function ResourcesPageClient() {
                       fontSize: { xs: "2.6rem", md: "3.6rem" },
                       fontWeight: 700,
                       lineHeight: 1.1,
-                      letterSpacing: "-0.03em"
+                      letterSpacing: "-0.03em",
+                      color: "#ffffff"
                     }}
                   >
                     Practical Tips to Keep Your Home Running Smoothly
