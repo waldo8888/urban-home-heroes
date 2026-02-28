@@ -14,9 +14,32 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: `Urban Home Heroes | ${service.name}`,
-    description: service.heroSubtitle,
-    keywords: service.keywords
+    title: service.name,
+    description: service.shortDescription,
+    keywords: service.keywords,
+    openGraph: {
+      title: `${service.name} | Urban Home Heroes`,
+      description: service.shortDescription,
+      url: `https://urbanhomeheroes.ca/services/${service.slug}`,
+      images: [
+        {
+          url: service.image,
+          width: 800,
+          height: 600,
+          alt: service.name,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.name} | Urban Home Heroes`,
+      description: service.shortDescription,
+      images: [service.image],
+    },
+    alternates: {
+      canonical: `/services/${service.slug}`,
+    },
   };
 }
 

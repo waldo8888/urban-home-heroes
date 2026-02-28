@@ -106,7 +106,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
                 <Box
                   component="img"
                   src="/urban-home-hero-logo.jpg"
-                  alt="Urban Home Heroes logo"
+                  alt="Urban Home Heroes - Local Contractor and Home Repair Vaughan"
                   sx={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </Box>
@@ -232,7 +232,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
               <Box
                 component="img"
                 src="/urban-home-hero-logo.jpg"
-                alt="Urban Home Heroes logo"
+                alt="Urban Home Heroes - Local Contractor Vaughan"
                 sx={{ width: 44, height: 44, borderRadius: 2 }}
               />
               <Typography variant="h6" sx={{ color: "#fff", fontWeight: 700 }}>

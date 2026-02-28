@@ -1,18 +1,16 @@
 import ServicesIndexClient from "./ServicesIndexClient";
 
 export const metadata = {
-  title: "Urban Home Heroes | Services",
+  title: "Professional Home Services & Repairs GTA | Urban Home Heroes",
   description:
-    "Explore Urban Home Heroes contractor services across the GTA, from snow removal and fencing to painting, appliance installation, plumbing, basement renovation, waterproofing, and junk removal.",
+    "Comprehensive home repair and maintenance services in Vaughan and the GTA. Over 50+ professional services including fencing, home repairs, and seasonal maintenance.",
   keywords: [
-    "contractor services",
-    "snow removal",
-    "fencing installation",
-    "painting and drywall",
-    "plumbing and electrical",
-    "fence repair service",
-    "appliance installation",
-    "junk removal"
+    "Professional Home Services",
+    "Handyman Vaughan",
+    "Licensed Contractor GTA",
+    "Fencing installation",
+    "Home Maintenance",
+    "Emergency Home Repair"
   ]
 };
 

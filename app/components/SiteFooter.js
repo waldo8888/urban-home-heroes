@@ -50,7 +50,7 @@ export default function SiteFooter() {
               <Box
                 component="img"
                 src="/urban-home-hero-logo.jpg"
-                alt="Urban Home Heroes logo"
+                alt="Urban Home Heroes - Licensed Home Repair Services GTA"
                 sx={{
                   width: 64,
                   height: 64,
