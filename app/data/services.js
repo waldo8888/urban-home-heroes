@@ -43,10 +43,10 @@ export const services = [
       "insured contractor",
       "reliable home services",
       "no job too small",
-      "same day contractor",
+      "emergency contractor",
       "emergency contractor"
     ],
-    highlights: ["Transparent pricing", "Owner operated team", "Same day availability"],
+    highlights: ["Transparent pricing", "Owner operated team", "Emergency repairs"],
     included: [
       "Drywall patching and touch ups",
       "Door and lock repairs",
@@ -66,8 +66,8 @@ export const services = [
         answer: "Yes. Urban Home Heroes is fully licensed and insured."
       },
       {
-        question: "Do you offer same day service?",
-        answer: "Same day availability depends on location and schedule, but we offer urgent slots whenever possible."
+        question: "Do you offer emergency repairs?",
+        answer: "Yes. Emergency repairs depend on location and schedule, and we offer urgent slots whenever possible."
       }
     ]
   },
@@ -83,7 +83,7 @@ export const services = [
     keywords: [
       "snow removal",
       "emergency snow removal near me",
-      "same day snow removal",
+      "emergency snow removal",
       "winter maintenance",
       "snow shoveling service"
     ],
@@ -100,7 +100,7 @@ export const services = [
     faqs: [
       {
         question: "Do you offer emergency snow removal?",
-        answer: "Yes, we provide emergency and same day snow removal based on availability."
+        answer: "Yes, we provide emergency snow removal based on availability."
       },
       {
         question: "What areas do you serve in winter?",
@@ -113,42 +113,42 @@ export const services = [
     ]
   },
   {
-    slug: "flooring-installation",
-    name: "Flooring Installation",
-    shortName: "Flooring Installation",
-    heroTitle: "Vinyl and Laminate Flooring Installation",
+    slug: "fencing-installation",
+    name: "Fencing",
+    shortName: "Fencing",
+    heroTitle: "Fence Repair & Installation",
     heroSubtitle:
-      "Upgrade your home with professional vinyl and laminate flooring installation for a clean, durable finish.",
-    shortDescription: "Vinyl and laminate flooring installation with clean trim work.",
+      "Professional fence repair and installation to secure your property. From storm damage to wear and tear, we get your fence back in shape.",
+    shortDescription: "Fence repair, installation, and replacement with clean, durable results.",
     image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1600&q=80",
     keywords: [
-      "vinyl flooring installation",
-      "laminate flooring installation",
-      "flooring contractor",
-      "vinyl flooring install cost Vaughan"
+      "fence repair",
+      "fence installation",
+      "fencing contractor",
+      "fence repair Vaughan"
     ],
-    highlights: ["Precise installs", "Clean trim work", "Fast turnaround"],
+    highlights: ["Storm damage repair", "Clean installs", "Fast turnaround"],
     included: [
-      "Vinyl flooring installation",
-      "Laminate flooring installation",
-      "Subfloor inspection and prep",
-      "Trim and baseboard finishing",
-      "Old flooring removal",
-      "Flooring repair touch ups"
+      "Fence repair and replacement",
+      "New fence installation",
+      "Gate repair and installation",
+      "Post and panel repair",
+      "Privacy and decorative fencing",
+      "Fence staining and maintenance"
     ],
-    idealFor: ["Kitchen and living rooms", "Basements", "Rental unit upgrades"],
+    idealFor: ["Storm damage", "Wear and tear", "Privacy and security"],
     faqs: [
       {
-        question: "Do you help with subfloor prep?",
-        answer: "Yes. We inspect the subfloor and make minor prep repairs as needed."
+        question: "Do you repair storm-damaged fences?",
+        answer: "Yes. We handle fence repair from storm damage, wind, and wear and tear."
       },
       {
-        question: "Can you remove old flooring?",
-        answer: "Yes, removal and disposal can be included in your estimate."
+        question: "Can you replace sections or full fences?",
+        answer: "Yes, we can repair sections or replace entire fences—included in your estimate."
       },
       {
-        question: "Do you provide flooring estimates?",
-        answer: "We provide clear estimates after a quick review of the space and materials."
+        question: "Do you provide fencing estimates?",
+        answer: "We provide clear estimates after a quick review of the site and scope."
       }
     ]
   },
@@ -323,7 +323,7 @@ export const services = [
     shortDescription: "Fast clean outs for garages, basements, and sheds.",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1600&q=80",
     keywords: ["junk removal", "garage clean out", "basement cleanup", "haul away service"],
-    highlights: ["Same day pickups", "Responsible disposal", "Clean sweep finish"],
+    highlights: ["Flexible scheduling", "Responsible disposal", "Clean sweep finish"],
     included: [
       "Garage clean outs",
       "Basement junk removal",
@@ -335,8 +335,8 @@ export const services = [
     idealFor: ["Move outs", "Renovation debris", "Downsizing projects"],
     faqs: [
       {
-        question: "Do you offer same day junk removal?",
-        answer: "Yes, we offer same day service whenever scheduling allows."
+        question: "Do you offer emergency junk removal?",
+        answer: "We offer flexible scheduling and can often accommodate urgent pickups when availability allows."
       },
       {
         question: "Can you remove old appliances?",

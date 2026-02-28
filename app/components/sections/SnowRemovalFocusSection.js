@@ -42,7 +42,7 @@ export default function SnowRemovalFocusSection() {
               </Typography>
               <Box sx={{ ...sectionDivider, mx: 0 }} />
               <Typography variant="body1" sx={{ ...sectionBodyStyle, textAlign: "left", mx: 0, fontSize: "1.1rem" }}>
-                Professional snow removal, driveway plowing and handyman services in Woodbridge, Vaughan & the GTA. Same-day winter service and clear pricing.
+                Professional snow removal, driveway plowing and handyman services in Woodbridge, Vaughan & the GTA. Emergency winter service and clear pricing.
               </Typography>
               <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
                 <Button

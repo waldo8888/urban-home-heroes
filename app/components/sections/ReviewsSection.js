@@ -18,7 +18,7 @@ const reviews = [
   },
   {
     rating: 5,
-    text: "Same-day response when we needed it most. Great team!",
+    text: "Emergency response when we needed it most. Great team!",
     author: "Client"
   }
 ];

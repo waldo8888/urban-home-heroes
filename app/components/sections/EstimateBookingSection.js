@@ -69,7 +69,7 @@ export default function EstimateBookingSection() {
             </Typography>
             <Stack spacing={1.5}>
               {[
-                "Emergency and same-day available",
+                "Emergency repairs available",
                 "Photo upload optional",
                 "No obligation estimates"
               ].map((item) => (
@@ -189,7 +189,7 @@ export default function EstimateBookingSection() {
                     <MenuItem value="Emergency Winter Repairs">Emergency Winter Repairs</MenuItem>
                     <MenuItem value="Interior Repair">Interior Repair</MenuItem>
                     <MenuItem value="Exterior Repair">Exterior Repair</MenuItem>
-                    <MenuItem value="Flooring Installation & Repair">Flooring Installation & Repair</MenuItem>
+                    <MenuItem value="Fencing Installation & Repair">Fencing Installation & Repair</MenuItem>
                     <MenuItem value="Plumbing Services">Plumbing Services</MenuItem>
                     <MenuItem value="Lighting & Electrical">Lighting & Electrical</MenuItem>
                     <MenuItem value="Carpentry, Fences & Decks">Carpentry, Fences & Decks</MenuItem>

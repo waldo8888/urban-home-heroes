@@ -45,7 +45,7 @@ const seasonalExpertise = [
             { icon: <PlumbingIcon />, title: "Plumbing", desc: "Faucets, Toilets & Leaks" },
             { icon: <ElectricalServicesIcon />, title: "Electrical", desc: "Fixtures, GFCIs & Fans" },
             { icon: <MeetingRoomRounded />, title: "Doors & Windows", desc: "Locks, Repairs & Installs" },
-            { icon: <ConstructionIcon />, title: "Flooring", desc: "Vinyl, Laminate & Tile" },
+            { icon: <ConstructionIcon />, title: "Fencing", desc: "Repair, Install & Maintain" },
             { icon: <ElderlyRounded />, title: "Senior Living", desc: "Accessibility upgrades" },
             { icon: <DeleteSweepRounded />, title: "Junk Removal", desc: "Haul-away & decluttering" }
         ]

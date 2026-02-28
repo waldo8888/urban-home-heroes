@@ -187,7 +187,7 @@ export default function HeroSection() {
               px: { xs: 1, md: 0 }
             }}
           >
-            Professional Driveway Clearing — Fast, Reliable, Same-Day Service
+            Professional Driveway Clearing — Fast, Reliable, Emergency Repairs When You Need Them
           </Typography>
 
           {/* Trust Badges - Horizontal scroll on mobile */}
@@ -209,7 +209,7 @@ export default function HeroSection() {
               scrollbarWidth: "none"
             }}
           >
-            {["Licensed & Insured", "Same-Day Response", "500+ Reviews"].map((item) => (
+            {["Licensed & Insured", "Emergency Repairs", "500+ Reviews"].map((item) => (
               <Box
                 key={item}
                 sx={{

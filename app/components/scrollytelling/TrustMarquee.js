@@ -12,7 +12,7 @@ const trustItems = [
     { icon: <ShieldIcon />, label: "$2M Liability Insurance" },
     { icon: <StarIcon />, label: "5-Star Google Rated" },
     { icon: <GppGoodIcon />, label: "Background Checked" },
-    { icon: <VerifiedUserIcon />, label: "Same-Day Service" },
+    { icon: <VerifiedUserIcon />, label: "Emergency Repairs" },
     { icon: <ShieldIcon />, label: "Family Owned" },
 ];
 

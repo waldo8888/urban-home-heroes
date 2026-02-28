@@ -7,7 +7,7 @@ if (seasonalMessage && seasonalTag) {
   let message = "Seasonal maintenance bookings are open now.";
 
   if (month === 11 || month === 0 || month === 1) {
-    message = "Snow removal and same-day help available this week.";
+    message = "Snow removal and emergency repairs available this week.";
   } else if (month >= 2 && month <= 4) {
     message = "Spring refresh: deck repairs and exterior touch-ups.";
   } else if (month >= 5 && month <= 8) {

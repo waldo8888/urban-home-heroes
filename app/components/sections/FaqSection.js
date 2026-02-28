@@ -21,9 +21,9 @@ import { eyebrowStyle, headingStyle, sectionBodyStyle } from "../../lib/sectionS
 
 const faqs = [
   {
-    question: "Do you offer same-day contractor service?",
+    question: "Do you offer emergency contractor service?",
     answer:
-      "Yes. Same-day contractor service and emergency snow removal near me are available depending on location and availability."
+      "Yes. Emergency repairs and emergency snow removal are available depending on location and availability."
   },
   {
     question: "Are you insured?",
@@ -42,7 +42,7 @@ const faqs = [
     answer: "No. We are a contractor for small jobs near me and full home projects."
   },
   {
-    question: "What is the vinyl flooring install cost in Vaughan?",
+    question: "What does fence repair or installation cost in Vaughan?",
     answer: "Costs vary by materials and scope. We provide transparent pricing after an on-site review."
   },
   {

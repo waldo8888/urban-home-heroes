@@ -33,7 +33,7 @@ const winterServices = [
 ];
 
 const winterPromises = [
-  "Same-day winter service options",
+  "Emergency winter service options",
   "Transparent, upfront pricing",
   "Insured contractor team",
   "Residential & commercial coverage",
@@ -89,7 +89,7 @@ export default function WinterServicesPageClient() {
                   </Typography>
                   <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.92)", fontSize: "1.1rem" }}>
                     Professional snow removal, driveway plowing and contractor services in Woodbridge, Vaughan & the GTA.
-                    Same-day winter service and clear pricing.
+                    Emergency winter service and clear pricing.
                   </Typography>
                   <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.75)" }}>
                     Serving snow removal clients in Woodbridge, Vaughan, Brampton, Etobicoke, North York and Mississauga.
@@ -208,7 +208,7 @@ export default function WinterServicesPageClient() {
                       Winter Service Promise
                     </Typography>
                     <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.85)" }}>
-                      Same-day response, clear communication, and reliable crews that show up on schedule.
+                      Emergency response, clear communication, and reliable crews that show up on schedule.
                     </Typography>
                     <Stack direction="row" spacing={1} alignItems="center" mt={2}>
                       {Array.from({ length: 5 }).map((_, index) => (
@@ -233,7 +233,7 @@ export default function WinterServicesPageClient() {
                   Need snow removal right away?
                 </Typography>
                 <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.85)", fontSize: "1.05rem" }}>
-                  Book same-day service or request a winter quote for your property in the GTA.
+                  Book emergency service or request a winter quote for your property in the GTA.
                 </Typography>
               </Grid>
               <Grid item xs={12} md={5}>

@@ -23,14 +23,14 @@ const seasonalGroups = [
   {
     title: "Spring / Summer Services",
     description: "Recovery and upgrades for warmer months.",
-    items: ["Basement renovation (post-flood)", "Fence & deck repair/installation", "Landscaping", "Property maintenance"]
+    items: ["Basement renovation (post-leak)", "Fence repair & installation", "Internal & external waterproofing", "Landscaping", "Property maintenance"]
   },
   {
     title: "Year-Round Services",
     description: "Trusted contractor work all year long.",
     items: [
       "Handyman repairs",
-      "Flooring",
+      "Fencing",
       "Painting",
       "Drywall",
       "Framing",

@@ -106,7 +106,7 @@ export default function FullScreenCTA() {
                                         <option value="snow">Snow Removal</option>
                                         <option value="reno">Renovations</option>
                                         <option value="repair">Handyman Repairs</option>
-                                        <option value="flooring">Flooring</option>
+                                        <option value="fencing">Fencing</option>
                                         <option value="other">Other</option>
                                     </TextField>
                                     <TextField fullWidth label="Project Details" multiline rows={4} variant="outlined" />

@@ -21,7 +21,7 @@ const reels = [
     },
     {
         id: "DTQENBpAC5d",
-        title: "Flooring Goals",
+        title: "Fencing & Property",
     }
 ];
 

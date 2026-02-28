@@ -28,9 +28,9 @@ const services = [
         img: "/generated/service-handyman.png"
     },
     {
-        title: "Flooring",
-        subtitle: "Hardwood, Vinyl & Tile",
-        desc: "Expert installation with laser-precision leveling and premium materials.",
+        title: "Fencing",
+        subtitle: "Repair, Install & Maintain",
+        desc: "Fence repair and installation—storm damage, wear and tear, new builds. We get your property secure.",
         color: "#e8f5e9",
         img: "/generated/service-flooring.png"
     }

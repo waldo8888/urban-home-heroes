@@ -4,7 +4,6 @@ import { Box } from "@mui/material";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import MobileCtaBar from "./components/MobileCtaBar";
-import MobileHeroNav from "./components/MobileHeroNav";
 import HeroSection from "./components/sections/HeroSection";
 import SnowRemovalBanner from "./components/sections/SnowRemovalBanner";
 
@@ -26,9 +25,6 @@ export default function HomePage() {
     <Box className="page" id="top" sx={{ bgcolor: "transparent" }}>
       <SiteHeader hideOnMobile={true} />
       <Box component="main">
-        {/* Mobile Navigation Bar - Above banner on mobile only */}
-        <MobileHeroNav />
-
         {/* Snow Removal Banner - At the very top */}
         <SnowRemovalBanner />
 

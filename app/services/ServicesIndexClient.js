@@ -98,7 +98,7 @@ export default function ServicesIndexClient() {
                     </Button>
                   </Stack>
                   <Stack direction="row" spacing={1.5} flexWrap="wrap" sx={{ gap: 1.5 }}>
-                    {["Licensed and insured", "Transparent pricing", "Same day availability"].map((item) => (
+                    {["Licensed and insured", "Transparent pricing", "Emergency repairs"].map((item) => (
                       <Box
                         key={item}
                         sx={{

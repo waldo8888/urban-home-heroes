@@ -299,7 +299,7 @@ export default function ResourcesPageClient() {
                   Want a contractor to handle it for you?
                 </Typography>
                 <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.85)", fontSize: "1.05rem" }}>
-                  Urban Home Heroes is ready for same-day jobs, small repairs, and larger projects across the GTA.
+                  Urban Home Heroes is ready for emergency repairs, small repairs, and larger projects across the GTA.
                 </Typography>
               </Grid>
               <Grid item xs={12} md={5}>

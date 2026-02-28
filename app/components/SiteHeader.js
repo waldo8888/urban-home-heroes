@@ -274,7 +274,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
                   }
                 }}
               >
-                Request Same-Day Service
+                Request Emergency Repairs
               </Button>
             </Stack>
 
@@ -387,7 +387,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
               {[
                 { label: "Snow Removal", href: "/services/snow-removal" },
                 { label: "Contractor Services", href: "/services/contractor-services" },
-                { label: "Flooring", href: "/services/flooring-installation" }
+                { label: "Fencing", href: "/services/fencing-installation" }
               ].map((service) => (
                 <Button
                   key={service.label}

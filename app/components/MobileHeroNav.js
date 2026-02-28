@@ -56,7 +56,7 @@ export default function MobileHeroNav() {
             "&:hover": { borderColor: "#ffffff", bgcolor: "rgba(255,255,255,0.12)" }
           }}
         >
-          Request Same-Day Service
+          Request Emergency Repairs
         </Button>
       </Stack>
     </Box>

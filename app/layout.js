@@ -27,7 +27,7 @@ export const metadata = {
     "licensed contractor",
     "insured contractor",
     "contractor near me",
-    "same day contractor",
+    "emergency contractor",
     "emergency contractor"
   ]
 };

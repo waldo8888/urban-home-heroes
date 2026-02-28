@@ -40,15 +40,15 @@ const detailedServices = [
     ]
   },
   {
-    title: "Flooring Installation & Repair",
-    description: "Professional flooring services for every room in your home, from installation to repair.",
+    title: "Fencing Installation & Repair",
+    description: "Professional fencing services for your property—repair storm damage, replace sections, or install new fences.",
     items: [
-      "Vinyl flooring installation",
-      "Laminate flooring installation",
-      "Floor tile installation and repair",
-      "Subfloor repairs",
-      "Trim finishing",
-      "Floor refinishing"
+      "Fence repair and replacement",
+      "New fence installation",
+      "Gate repair and installation",
+      "Post and panel repair",
+      "Privacy and decorative fencing",
+      "Fence staining and maintenance"
     ]
   },
   {
@@ -168,7 +168,7 @@ const detailedServices = [
       "Restaurant services",
       "Property management support",
       "Commercial painting",
-      "Commercial flooring"
+      "Commercial fencing"
     ]
   }
 ];

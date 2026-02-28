@@ -20,7 +20,7 @@ const serviceLinks = [
   { label: "Winter Services", href: "/winter-services" },
   { label: "Contractor Services", href: "/services/contractor-services" },
   { label: "Snow Removal", href: "/services/snow-removal" },
-  { label: "Flooring Installation", href: "/services/flooring-installation" },
+  { label: "Fencing", href: "/services/fencing-installation" },
   { label: "Fence & Deck Repairs", href: "/services/fence-deck-repairs" }
 ];
 

@@ -163,7 +163,7 @@ export default function ResourceDetailClient({ guide }) {
                 </Typography>
                 <Typography variant="body1" sx={{ color: "#6a6f75", fontSize: "1.05rem" }}>
                   Urban Home Heroes can handle the repair, upgrade, or seasonal maintenance for you. We offer
-                  transparent pricing, same-day availability, and respectful in-home service.
+                  transparent pricing, emergency repairs, and respectful in-home service.
                 </Typography>
               </Grid>
               <Grid item xs={12} md={5}>

@@ -23,8 +23,8 @@ const primaryServices = [
     description: "Emergency snow removal near me and safe winter response."
   },
   {
-    title: "Flooring Installation",
-    description: "Vinyl and laminate done right."
+    title: "Fencing",
+    description: "Fence repair and installation, storm damage and more."
   },
   {
     title: "Painting & Drywall",
