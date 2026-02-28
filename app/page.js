@@ -5,7 +5,7 @@ import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import MobileCtaBar from "./components/MobileCtaBar";
 import HeroSection from "./components/sections/HeroSection";
-import SnowRemovalBanner from "./components/sections/SnowRemovalBanner";
+
 
 // Scrollytelling Components
 import ScrollytellingWrapper from "./components/scrollytelling/ScrollytellingWrapper";
@@ -25,8 +25,6 @@ export default function HomePage() {
     <Box className="page" id="top" sx={{ bgcolor: "transparent" }}>
       <SiteHeader hideOnMobile={true} />
       <Box component="main">
-        {/* Snow Removal Banner - At the very top */}
-        <SnowRemovalBanner />
 
         <HeroSection />
 
@@ -46,7 +44,7 @@ export default function HomePage() {
       </Box>
 
       <SiteFooter />
-      <MobileCtaBar quoteHref="#estimate" callLabel="Call Now" quoteLabel="Get Snow Removal Quote" />
+      <MobileCtaBar quoteHref="#estimate" callLabel="Call Now" quoteLabel="Get a Free Quote" />
     </Box>
   );
 }

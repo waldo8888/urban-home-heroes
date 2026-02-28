@@ -16,7 +16,7 @@ import MenuRounded from "@mui/icons-material/MenuRounded";
 import CloseRounded from "@mui/icons-material/CloseRounded";
 import PhoneRounded from "@mui/icons-material/PhoneRounded";
 import CalendarMonthRounded from "@mui/icons-material/CalendarMonthRounded";
-import AcUnitRounded from "@mui/icons-material/AcUnitRounded";
+
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
@@ -43,82 +43,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
 
   return (
     <>
-      {/* Promo Banner */}
-      <AnimatePresence>
-        {showBanner && (
-          <Box
-            component={motion.div}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            sx={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              zIndex: 1300, // Higher than AppBar
-              background: "linear-gradient(90deg, #f07a2b 0%, #ff9d57 100%)",
-              color: "#ffffff",
-              overflow: "hidden"
-            }}
-          >
-            <Container maxWidth="xl">
-              <Stack
-                direction="row"
-                alignItems="center"
-                justifyContent="center"
-                spacing={{ xs: 1, sm: 2 }}
-                sx={{
-                  py: { xs: 0.5, sm: 1 },
-                  position: "relative",
-                  height: { xs: 36, sm: 44 }, // Explicit fixed height
-                  alignItems: "center"
-                }}
-              >
-                <AcUnitRounded sx={{ fontSize: "1rem", animation: "spin 3s linear infinite", display: { xs: "none", sm: "block" } }} />
-                <Typography
-                  variant="body2"
-                  sx={{
-                    fontWeight: 700,
-                    fontSize: { xs: "0.7rem", sm: "0.85rem" },
-                    letterSpacing: "0.03em",
-                    textAlign: "center",
-                    pr: { xs: 4, sm: 0 } // Space for close button on mobile
-                  }}
-                >
-                  ❄️ WINTER SERVICES — LIMITED SLOTS!{" "}
-                  <Box
-                    component="a"
-                    href="#estimate"
-                    sx={{
-                      color: "#fff",
-                      textDecoration: "underline",
-                      fontWeight: 800,
-                      "&:hover": { color: "#0e2740" }
-                    }}
-                  >
-                    Book Now →
-                  </Box>
-                </Typography>
-                <IconButton
-                  size="small"
-                  onClick={() => setShowBanner(false)}
-                  sx={{
-                    position: "absolute",
-                    right: { xs: 4, sm: 0 },
-                    color: "#fff",
-                    minWidth: 36,
-                    minHeight: 36,
-                    "&:hover": { bgcolor: "rgba(255,255,255,0.2)" }
-                  }}
-                >
-                  <CloseRounded sx={{ fontSize: "1.1rem" }} />
-                </IconButton>
-              </Stack>
-            </Container>
-          </Box>
-        )}
-      </AnimatePresence>
+
 
       {/* Main App Bar */}
       <AppBar
@@ -129,7 +54,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
         sx={{
-          top: showBanner ? { xs: 36, sm: 44 } : 0, // Must match banner heights exactly
+          top: 0, // Banner removed
           zIndex: 1200, // Below banner
           background: isScrolled
             ? "rgba(14, 39, 64, 0.95)"
@@ -385,7 +310,7 @@ export default function SiteHeader({ hideOnMobile = false }) {
             </Typography>
             <Stack spacing={0.5}>
               {[
-                { label: "Snow Removal", href: "/services/snow-removal" },
+
                 { label: "Contractor Services", href: "/services/contractor-services" },
                 { label: "Fencing", href: "/services/fencing-installation" }
               ].map((service) => (

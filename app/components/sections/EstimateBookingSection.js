@@ -61,11 +61,11 @@ export default function EstimateBookingSection() {
                   color: "#0e2740"
                 }}
               >
-                Get a Snow Removal Quote
+                Get a Free Quote
               </Typography>
             </Stack>
             <Typography variant="body1" sx={{ color: "#6a6f75", mb: 3 }}>
-              Tell us what you need and we will follow up quickly with a fair estimate for snow removal or year-round services.
+              Tell us what you need and we will follow up quickly with a fair estimate for home repairs or renovation services.
             </Typography>
             <Stack spacing={1.5}>
               {[
@@ -133,7 +133,7 @@ export default function EstimateBookingSection() {
                   required
                 />
                 <FormControl fullWidth required>
-                  <InputLabel 
+                  <InputLabel
                     id="service-type-label"
                     sx={{
                       "&.Mui-focused": {
@@ -163,7 +163,7 @@ export default function EstimateBookingSection() {
                       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                         borderColor: "#f07a2b",
                         borderWidth: "2px",
-                          boxShadow: `0 0 0 3px ${theme.palette.primary.main}33`
+                        boxShadow: `0 0 0 3px ${theme.palette.primary.main}33`
                       },
                       "& .MuiSelect-select": {
                         padding: "16.5px 14px",
@@ -184,9 +184,7 @@ export default function EstimateBookingSection() {
                     <MenuItem value="" disabled sx={{ display: "none" }}>
                       Select a service
                     </MenuItem>
-                    <MenuItem value="Snow Removal">Snow Removal</MenuItem>
-                    <MenuItem value="Ice Management">Ice Management</MenuItem>
-                    <MenuItem value="Emergency Winter Repairs">Emergency Winter Repairs</MenuItem>
+
                     <MenuItem value="Interior Repair">Interior Repair</MenuItem>
                     <MenuItem value="Exterior Repair">Exterior Repair</MenuItem>
                     <MenuItem value="Fencing Installation & Repair">Fencing Installation & Repair</MenuItem>

@@ -22,7 +22,7 @@ export const metadata = {
     "Urban Home Heroes contractor",
     "Urban Home Hero contractor",
     "Urban Home Hero Vaughan",
-    "Urban Home Hero snow removal",
+
     "local contractor",
     "licensed contractor",
     "insured contractor",

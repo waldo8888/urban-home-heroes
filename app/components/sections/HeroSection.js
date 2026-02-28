@@ -139,7 +139,7 @@ export default function HeroSection() {
             }}
           >
             <StarRounded sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }} />
-            GTA's #1 Snow Removal
+            GTA's #1 Local Contractor Team
           </Box>
 
           {/* Main Headline - Optimized for mobile */}
@@ -159,7 +159,7 @@ export default function HeroSection() {
               px: { xs: 1, md: 0 }
             }}
           >
-            Snow Removal in{" "}
+            Your Local<br />
             <Box
               component="span"
               sx={{
@@ -167,7 +167,7 @@ export default function HeroSection() {
                 display: { xs: "inline", md: "block" }
               }}
             >
-              Woodbridge & Vaughan
+              Fix-It Heroes
             </Box>
           </Typography>
 
@@ -187,7 +187,7 @@ export default function HeroSection() {
               px: { xs: 1, md: 0 }
             }}
           >
-            Professional Driveway Clearing — Fast, Reliable, Emergency Repairs When You Need Them
+            Professional Home Repairs — Fast, Reliable, Licensed Support When You Need It Most
           </Typography>
 
           {/* Trust Badges - Horizontal scroll on mobile */}

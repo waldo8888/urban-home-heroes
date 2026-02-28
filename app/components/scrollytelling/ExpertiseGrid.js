@@ -20,14 +20,7 @@ import ElderlyRounded from "@mui/icons-material/ElderlyRounded";
 import DeleteSweepRounded from "@mui/icons-material/DeleteSweepRounded";
 
 const seasonalExpertise = [
-    {
-        season: "❄️ Winter Services",
-        items: [
-            { icon: <AcUnitRounded />, title: "Snow Removal", desc: "Plowing, Salting & Ice Management" },
-            { icon: <WarningRounded />, title: "Emergency Repairs", desc: "24/7 Winter Response Team" },
-            { icon: <ThermostatRounded />, title: "Heating Support", desc: "Draft proofing & Insulation" }
-        ]
-    },
+
     {
         season: "☀️ Spring / Summer",
         items: [

@@ -6,13 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import ArrowForwardRounded from "@mui/icons-material/ArrowForwardRounded";
 
 const services = [
-    {
-        title: "Snow Removal",
-        subtitle: "Commercial & Residential",
-        desc: "24/7 automated dispatch when snow hits 5cm. Sleep soundly while we clear the way.",
-        color: "#e3f2fd",
-        img: "/generated/service-snow.png"
-    },
+
     {
         title: "Renovations",
         subtitle: "Kitchens, Bathrooms & Basements",

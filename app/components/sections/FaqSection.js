@@ -23,7 +23,7 @@ const faqs = [
   {
     question: "Do you offer emergency contractor service?",
     answer:
-      "Yes. Emergency repairs and emergency snow removal are available depending on location and availability."
+      "Yes. Emergency repairs are available depending on location and availability."
   },
   {
     question: "Are you insured?",

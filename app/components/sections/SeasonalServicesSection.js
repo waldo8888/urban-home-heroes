@@ -14,12 +14,7 @@ import CheckCircleRounded from "@mui/icons-material/CheckCircleRounded";
 import { eyebrowStyle, headingStyle, sectionBodyStyle, sectionDivider } from "../../lib/sectionStyles";
 
 const seasonalGroups = [
-  {
-    title: "Winter Services",
-    description: "Focused support for safe, clear properties all season.",
-    items: ["Snow removal", "Ice management", "Emergency winter repairs"],
-    cta: { label: "Snow Removal & Winter Services", href: "/winter-services" }
-  },
+
   {
     title: "Spring / Summer Services",
     description: "Recovery and upgrades for warmer months.",
@@ -60,7 +55,7 @@ export default function SeasonalServicesSection() {
           </Typography>
           <Box sx={sectionDivider} />
           <Typography variant="body1" sx={sectionBodyStyle}>
-            We prioritize winter snow removal now, while keeping full-service coverage available year-round.
+            We provide full-service home repair and maintenance coverage available year-round.
           </Typography>
         </Stack>
 

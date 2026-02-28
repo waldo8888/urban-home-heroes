@@ -48,10 +48,10 @@ export default function ServiceAreasSection() {
           </Typography>
           <Box sx={sectionDivider} />
           <Box sx={{ maxWidth: "100%", width: "100%", textAlign: "center" }}>
-            <Typography 
-              variant="body1" 
-              sx={{ 
-                ...sectionBodyStyle, 
+            <Typography
+              variant="body1"
+              sx={{
+                ...sectionBodyStyle,
                 textAlign: "center",
                 display: "block",
                 maxWidth: "100%",
@@ -92,7 +92,7 @@ export default function ServiceAreasSection() {
           variant="caption"
           sx={{ display: "block", textAlign: "center", color: "#6a6f75", mb: 3 }}
         >
-          Popular searches: Urban Home Hero, Urban Home Hero Vaughan, Urban Home Hero contractor, Urban Home Hero snow removal.
+          Popular searches: Urban Home Hero, Urban Home Hero Vaughan, Urban Home Hero contractor.
         </Typography>
         <Stack direction="row" justifyContent="center">
           <Button
